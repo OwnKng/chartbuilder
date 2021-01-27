@@ -37,7 +37,7 @@ const Visualisation = ({ className }) => {
         value={subtitle}
         onChange={(e) => setSubtile(e.target.value)}
       />
-      {renderChart(geometry)}
+      <div style={{ position: "relative" }}>{renderChart(geometry)}</div>
     </div>
   )
 }

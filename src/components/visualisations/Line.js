@@ -1,7 +1,7 @@
 import ParentSize from "@visx/responsive/lib/components/ParentSize"
 import { useSelection } from "../../hooks"
 import { scaleLinear, scaleOrdinal } from "@visx/scale"
-import { extent, group, schemeSet1 } from "d3"
+import { extent, group, schemeSet1, format } from "d3"
 import { AnimatedAxis } from "@visx/react-spring"
 import { LinePath } from "@visx/shape"
 import { useScale } from "../../hooks"
@@ -9,7 +9,7 @@ import { useScale } from "../../hooks"
 const LineChart = ({
   width,
   height,
-  margin = { left: 30, right: 30, top: 10, bottom: 10 },
+  margin = { left: 30, right: 30, top: 10, bottom: 40 },
 }) => {
   // dimensions
   const { data, x, y, color } = useSelection()
@@ -57,7 +57,12 @@ const LineChart = ({
         />
       ))}
       <AnimatedAxis left={margin.left} orientation='left' scale={yScale} />
-      <AnimatedAxis top={innerHeight} orientation='bottom' scale={xScale} />
+      <AnimatedAxis
+        top={innerHeight}
+        orientation='bottom'
+        scale={xScale}
+        tickFormat={format("d")}
+      />
     </svg>
   )
 }

@@ -1,4 +1,4 @@
-import Form from "./components/Form"
+import Form from "./components/layout/Form"
 import "./App.css"
 import Visualisation from "./components/layout/Visualisation"
 

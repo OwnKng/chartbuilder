@@ -1343,3 +1343,5 @@ export const econTs = [
   },
   { country: "United States", year: 2019, gdpPerCap: 65298 },
 ]
+
+export const econTs2018 = econTs.filter((d) => d.year === 2018)

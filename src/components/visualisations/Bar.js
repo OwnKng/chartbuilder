@@ -12,7 +12,7 @@ import { max } from "d3"
 const BarChart = ({
   width,
   height,
-  margin = { top: 10, left: 30, right: 30, bottom: 30 },
+  margin = { top: 30, left: 30, right: 30, bottom: 40 },
 }) => {
   const { data, x, y, color } = useSelection()
 
@@ -46,16 +46,6 @@ const BarChart = ({
   // Return the chart
   return (
     <>
-      <LegendOrdinal
-        scale={colorScale}
-        direction='row'
-        shape='circle'
-        style={{
-          display: "flex",
-          justifyContent: "space-around",
-          fontSize: "12px",
-        }}
-      />
       <svg width={width} height={height}>
         <Group>
           {data.map((d, i) => {
@@ -83,6 +73,24 @@ const BarChart = ({
           numTicks={xScale.domain().length}
         />
       </svg>
+      {color !== "none" ? (
+        <LegendOrdinal
+          scale={colorScale}
+          direction='row'
+          shape='circle'
+          labelMargin='0 30px 0 0'
+          style={{
+            position: "absolute",
+            top: margin.top / 2 - 10,
+            left: margin.left,
+            width: `100%`,
+            display: "flex",
+            fontSize: "12px",
+            overflowX: "scroll",
+            flexWrap: "wrap",
+          }}
+        />
+      ) : null}
     </>
   )
 }

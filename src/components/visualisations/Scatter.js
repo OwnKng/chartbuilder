@@ -10,10 +10,9 @@ import { useScale, useType } from "../../hooks"
 const Chart = ({
   width,
   height,
-  margin = { top: 30, left: 30, right: 30, bottom: 40 },
+  margin = { top: 30, left: 50, right: 50, bottom: 40 },
 }) => {
   const { data, x, y, color, geometry } = useSelection()
-  useType(data)
 
   // Set dimensions
   const innerWidth = width - margin.left - margin.right
@@ -39,16 +38,6 @@ const Chart = ({
   // Return the chart
   return (
     <>
-      <LegendOrdinal
-        scale={colorScale}
-        direction='row'
-        shape='circle'
-        style={{
-          display: "flex",
-          justifyContent: "space-around",
-          fontSize: "12px",
-        }}
-      />
       <svg width={width} height={height}>
         {geometry === "point" &&
           data.map((point, i) => (
@@ -63,6 +52,24 @@ const Chart = ({
         <AnimatedAxis left={margin.left} orientation='left' scale={yScale} />
         <AnimatedAxis top={innerHeight} orientation='bottom' scale={xScale} />
       </svg>
+      {color !== "none" ? (
+        <LegendOrdinal
+          scale={colorScale}
+          direction='row'
+          shape='circle'
+          labelMargin='0 30px 0 0'
+          style={{
+            position: "absolute",
+            top: margin.top / 2 - 10,
+            left: margin.left,
+            width: `100%`,
+            display: "flex",
+            fontSize: "12px",
+            overflowX: "scroll",
+            flexWrap: "wrap",
+          }}
+        />
+      ) : null}
     </>
   )
 }

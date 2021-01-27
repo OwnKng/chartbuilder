@@ -9,6 +9,7 @@
     "@visx/react-spring": "^1.4.0",
     "@visx/visx": "^1.4.0",
     "d3": "^6.4.0",
+    "framer-motion": "^3.2.2-rc.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-scripts": "4.0.1",
