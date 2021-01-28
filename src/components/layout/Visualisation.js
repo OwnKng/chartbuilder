@@ -6,7 +6,7 @@ import Line from "../visualisations/Line"
 import { useState } from "react"
 
 const Visualisation = ({ className }) => {
-  const { geometry } = useSelection()
+  const { x, geometry } = useSelection()
   const [title, setTitle] = useState("Chart title")
   const [subtitle, setSubtile] = useState("subtitle")
 
@@ -37,7 +37,7 @@ const Visualisation = ({ className }) => {
         value={subtitle}
         onChange={(e) => setSubtile(e.target.value)}
       />
-      <div style={{ position: "relative" }}>{renderChart(geometry)}</div>
+      {x && <div style={{ position: "relative" }}>{renderChart(geometry)}</div>}
     </div>
   )
 }

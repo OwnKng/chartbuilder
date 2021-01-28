@@ -1,9 +1,10 @@
-import { useSelection, useType } from "../../hooks"
+import { useSelection } from "../../hooks"
 import Controls from "./styled/Control"
+import { visOptions } from "../visualisations/visOptions"
+import Aesthetics from "./Aesthetics"
 
 const ChartOptions = ({ open, setOpen }) => {
-  const { data, x, y, color, updateSelections } = useSelection()
-  const { types } = useType(data)
+  const { data, reorder, geometry, updateSelections } = useSelection()
 
   return (
     <Controls
@@ -32,62 +33,11 @@ const ChartOptions = ({ open, setOpen }) => {
       </button>
       <h4>Map aesthetics</h4>
       <div>
-        <label htmlFor='select-x'>X</label>
-        <select
-          id='select-x'
-          onChange={(e) => updateSelections({ x: e.target.value })}
-          value={x}
-        >
-          {types
-            .filter((t) => t.type === "character")
-            .map((key) => (
-              <option
-                key={`select-option-key-${key.variable}`}
-                value={key.variable}
-              >
-                {key.variable}
-              </option>
-            ))}
-        </select>
-      </div>
-      <div>
-        <label htmlFor='select-y'>Y</label>
-        <select
-          id='select-y'
-          onChange={(e) => updateSelections({ y: e.target.value })}
-          value={y}
-        >
-          {types
-            .filter((t) => t.type === "number")
-            .map((key) => (
-              <option
-                key={`select-option-key-${key.variable}`}
-                value={key.variable}
-              >
-                {key.variable}
-              </option>
-            ))}
-        </select>
-      </div>
-      <div>
-        <label htmlFor='select-color'>Color</label>
-        <select
-          id='select-color'
-          onChange={(e) => updateSelections({ color: e.target.value })}
-          value={color}
-        >
-          {types
-            .filter((t) => t.type === "character")
-            .map((key) => (
-              <option
-                key={`select-option-key-${key.variable}`}
-                value={key.variable}
-              >
-                {key.variable}
-              </option>
-            ))}
-          <option value={"none"}>none</option>
-        </select>
+        <Aesthetics
+          data={data}
+          handleClick={updateSelections}
+          {...visOptions[geometry]}
+        />
       </div>
     </Controls>
   )

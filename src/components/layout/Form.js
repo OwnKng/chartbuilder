@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import ChartOptions from "./ChartOptions"
 import ChartShare from "./ChartShare"
 import { useSelection } from "../../hooks"
@@ -8,8 +8,8 @@ import ChartData from "./ChartData"
 import Style from "./Style"
 
 const Form = ({ className }) => {
-  const { data, updateSelections } = useSelection()
-  const [keys, setKeys] = useState(false)
+  const { updateSelections } = useSelection()
+
   const [open, setOpen] = useState("data")
 
   const handleChange = (value) => {
@@ -32,10 +32,6 @@ const Form = ({ className }) => {
     })
   }
 
-  useEffect(() => {
-    setKeys(Object.keys(data[0]))
-  }, [data, updateSelections])
-
   return (
     <div className={className}>
       <ChartData
@@ -43,13 +39,7 @@ const Form = ({ className }) => {
         setOpen={() => setOpen("data")}
         handleChange={handleChange}
       />
-      {keys && (
-        <ChartOptions
-          open={open === "viz"}
-          setOpen={() => setOpen("viz")}
-          keys={keys}
-        />
-      )}
+      <ChartOptions open={open === "viz"} setOpen={() => setOpen("viz")} />
       <Style open={open === "style"} setOpen={() => setOpen("style")} />
       <ChartShare open={open === "share"} setOpen={() => setOpen("share")} />
     </div>

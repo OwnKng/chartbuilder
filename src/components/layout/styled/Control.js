@@ -3,7 +3,7 @@ import { motion } from "framer-motion"
 
 const Controls = ({ className, children, title, position, setPosition }) => {
   const variants = {
-    open: { width: "20vw" },
+    open: { width: "15vw" },
     closed: { width: "0px" },
     transition: "ease",
   }

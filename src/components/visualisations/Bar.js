@@ -14,7 +14,9 @@ const BarChart = ({
   height,
   margin = { top: 30, left: 30, right: 30, bottom: 40 },
 }) => {
-  const { data, x, y, color } = useSelection()
+  let { data, x, y, color, reorder } = useSelection()
+
+  if (reorder) data = data.sort((a, b) => a[y] - b[y])
 
   // Set dimensions
   const innerWidth = width - margin.left - margin.right
@@ -22,7 +24,7 @@ const BarChart = ({
 
   // Accessor functions
   const getX = (d) => d[x]
-  const getY = (d) => d[y]
+  const getY = (d) => d[y] ?? 0
   const getColor = (d) => d[color]
 
   // Create scales
@@ -50,7 +52,7 @@ const BarChart = ({
         <Group>
           {data.map((d, i) => {
             const barWidth = xScale.bandwidth()
-            const barHeight = innerHeight - (yScale(getY(d)) ?? 0)
+            const barHeight = innerHeight - yScale(getY(d))
             const barX = xScale(getX(d))
             const barY = innerHeight - barHeight
             return (
@@ -73,7 +75,7 @@ const BarChart = ({
           numTicks={xScale.domain().length}
         />
       </svg>
-      {color !== "none" ? (
+      {color !== false ? (
         <LegendOrdinal
           scale={colorScale}
           direction='row'
