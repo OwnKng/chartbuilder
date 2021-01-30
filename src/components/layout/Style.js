@@ -1,13 +1,35 @@
 import Controls from "./styled/Control"
+import { useStyles } from "../../hooks"
+import { verticalLabels, horizontalLabels } from "./styled/elements/VisStyles"
 
 const Style = ({ open, setOpen }) => {
+  const { updateStyles } = useStyles()
+
   return (
     <Controls
       title='Style'
       position={open}
       setPosition={() => setOpen("style")}
     >
-      <p>Hello World</p>
+      <h4>Style visualisation</h4>
+      <button
+        onClick={() =>
+          updateStyles({
+            text: verticalLabels,
+          })
+        }
+      >
+        Vertical
+      </button>
+      <button
+        onClick={() =>
+          updateStyles({
+            text: horizontalLabels,
+          })
+        }
+      >
+        Horizontal
+      </button>
     </Controls>
   )
 }

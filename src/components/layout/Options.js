@@ -1,10 +1,10 @@
 import { useSelection } from "../../hooks"
 import Controls from "./styled/Control"
 import { visOptions } from "../visualisations/visOptions"
-import Aesthetics from "./Aesthetics"
+import VisOptions from "./VisOptions"
 
-const ChartOptions = ({ open, setOpen }) => {
-  const { data, reorder, geometry, updateSelections } = useSelection()
+const Options = ({ open, setOpen }) => {
+  const { data, reordered, geometry, updateSelections } = useSelection()
 
   return (
     <Controls
@@ -33,8 +33,9 @@ const ChartOptions = ({ open, setOpen }) => {
       </button>
       <h4>Map aesthetics</h4>
       <div>
-        <Aesthetics
+        <VisOptions
           data={data}
+          reordered={reordered}
           handleClick={updateSelections}
           {...visOptions[geometry]}
         />
@@ -43,4 +44,4 @@ const ChartOptions = ({ open, setOpen }) => {
   )
 }
 
-export default ChartOptions
+export default Options

@@ -3,10 +3,13 @@ import ReactDOM from "react-dom"
 import App from "./App"
 import reportWebVitals from "./reportWebVitals"
 import SelectionProvider from "./hooks/SelectionProvider"
+import StylesProvider from "./hooks/StylesProvider"
 
 ReactDOM.render(
   <SelectionProvider>
-    <App />
+    <StylesProvider>
+      <App />
+    </StylesProvider>
   </SelectionProvider>,
   document.getElementById("root")
 )

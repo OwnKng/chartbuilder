@@ -1,11 +1,9 @@
 import { useType } from "../../hooks"
 import { VizInput } from "./VizInput"
-import { useState } from "react"
 import { ButtonOptions } from "./styled/elements/ButtonOptions"
 
-const Aesthetics = ({ data, x, y, color, reorder, handleClick }) => {
+const VisOptions = ({ data, x, y, color, reordered, reorder, handleClick }) => {
   const { types } = useType(data)
-  const [check, setCheck] = useState(false)
 
   if (!x) return null
 
@@ -47,11 +45,8 @@ const Aesthetics = ({ data, x, y, color, reorder, handleClick }) => {
         <div>
           <input
             type='checkbox'
-            checked={check}
-            onChange={() => {
-              setCheck((prevState) => !prevState)
-              handleClick({ reorder: check })
-            }}
+            checked={reordered}
+            onChange={() => handleClick({ reordered: !reordered })}
             id='reorder'
           />
           <label htmlFor='reorder'>Reorder bars</label>
@@ -61,4 +56,4 @@ const Aesthetics = ({ data, x, y, color, reorder, handleClick }) => {
   )
 }
 
-export default Aesthetics
+export default VisOptions

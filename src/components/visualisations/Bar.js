@@ -5,6 +5,7 @@ import { schemeSet1 } from "d3"
 import { AnimatedAxis } from "@visx/react-spring"
 import { AxisBottom } from "@visx/axis"
 import { useSelection } from "../../hooks"
+import { useStyles } from "../../hooks"
 import { LegendOrdinal } from "@visx/legend"
 import { scaleBand, scaleLinear, scaleOrdinal } from "@visx/scale"
 import { max } from "d3"
@@ -12,11 +13,14 @@ import { max } from "d3"
 const BarChart = ({
   width,
   height,
-  margin = { top: 30, left: 30, right: 30, bottom: 40 },
+  margin = { top: 30, left: 30, right: 30, bottom: 100 },
 }) => {
-  let { data, x, y, color, reorder } = useSelection()
+  const { data, x, y, color, reordered } = useSelection()
+  const { text } = useStyles()
 
-  if (reorder) data = data.sort((a, b) => a[y] - b[y])
+  let barData = [...data]
+
+  if (reordered) barData.sort((a, b) => a[y] - b[y])
 
   // Set dimensions
   const innerWidth = width - margin.left - margin.right
@@ -29,19 +33,19 @@ const BarChart = ({
 
   // Create scales
   const xScale = scaleBand({
-    domain: [...new Set(data.map(getX))],
+    domain: [...new Set(barData.map(getX))],
     range: [margin.left, innerWidth],
     padding: 0.1,
   })
 
   const yScale = scaleLinear({
-    domain: [0, max(data, getY)],
+    domain: [0, max(barData, getY)],
     range: [innerHeight, margin.top],
     nice: true,
   })
 
   const colorScale = scaleOrdinal({
-    domain: [...new Set(data.map(getColor))],
+    domain: [...new Set(barData.map(getColor))],
     range: schemeSet1,
   })
 
@@ -50,7 +54,7 @@ const BarChart = ({
     <>
       <svg width={width} height={height}>
         <Group>
-          {data.map((d, i) => {
+          {barData.map((d, i) => {
             const barWidth = xScale.bandwidth()
             const barHeight = innerHeight - yScale(getY(d))
             const barX = xScale(getX(d))
@@ -73,6 +77,7 @@ const BarChart = ({
           orientation='bottom'
           scale={xScale}
           numTicks={xScale.domain().length}
+          tickLabelProps={() => text}
         />
       </svg>
       {color !== false ? (

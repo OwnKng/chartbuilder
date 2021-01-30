@@ -10,7 +10,9 @@ export default function SelectionProvider({ children }) {
     y: "lifeExpectancy",
     color: "region",
     geometry: "point",
-    reorder: false,
+    reordered: false,
+    title: "",
+    subtitle: "",
   })
 
   const updateSelections = (value) => {
