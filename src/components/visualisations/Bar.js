@@ -8,7 +8,7 @@ import { useSelection } from "../../hooks"
 import { useStyles } from "../../hooks"
 import { LegendOrdinal } from "@visx/legend"
 import { scaleBand, scaleLinear, scaleOrdinal } from "@visx/scale"
-import { max } from "d3"
+import { max, format } from "d3"
 
 const BarChart = ({
   width,
@@ -71,7 +71,12 @@ const BarChart = ({
             )
           })}
         </Group>
-        <AnimatedAxis left={margin.left} orientation='left' scale={yScale} />
+        <AnimatedAxis
+          left={margin.left}
+          orientation='left'
+          scale={yScale}
+          tickFormat={format(".2s")}
+        />
         <AxisBottom
           top={innerHeight}
           orientation='bottom'
