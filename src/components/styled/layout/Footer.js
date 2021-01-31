@@ -8,6 +8,6 @@ const Footer = ({ className }) => (
 
 export default styled(Footer)`
   color: var(--color-paragraph);
-  opacity: 0.5;
-  margin: 0px 30px;
+  margin: 10px 0px 10px 10px;
+  opacity: 0.4;
 `

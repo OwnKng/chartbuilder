@@ -13,7 +13,7 @@ import { AnimatedGridRows } from "@visx/react-spring"
 const BarChart = ({
   width,
   height,
-  margin = { top: 60, left: 50, right: 80, bottom: 80 },
+  margin = { top: 60, left: 60, right: 80, bottom: 80 },
 }) => {
   const { data, x, y, color, reordered } = useSelection()
 

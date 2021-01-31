@@ -3,6 +3,7 @@ import { useSelection } from "../../../hooks"
 import Scatter from "../../visualisations/Scatter"
 import Bar from "../../visualisations/Bar"
 import Line from "../../visualisations/Line"
+import { elevation } from "../utilities/"
 
 const Visualisation = ({ className }) => {
   const { x, geometry, title, subtitle, updateSelections } = useSelection()
@@ -43,10 +44,11 @@ export default styled(Visualisation)`
   grid-area: visualisation;
   display: grid;
   grid-template-areas: "title" "subtitle" "visualisation";
-  grid-template-rows: 5vh 5vh 80vh;
+  grid-template-rows: 6vh 4vh 75vh;
   width: 100%;
-  padding: 0.5rem;
+  padding: 1rem 0.5rem;
   background: var(--color-foreground);
+  ${elevation[1]};
 
   input {
     border: none;

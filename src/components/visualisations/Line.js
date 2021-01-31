@@ -3,7 +3,6 @@ import { useSelection } from "../../hooks"
 import { scaleLinear, scaleOrdinal } from "@visx/scale"
 import { extent, group, schemeSet1 } from "d3"
 import { LinePath } from "@visx/shape"
-import { useScale } from "../../hooks"
 import Legend from "./Legend"
 import AxisLeft from "./AxisLeft"
 import AxisBottom from "./AxisBottom"
@@ -12,7 +11,7 @@ import { AnimatedGridRows } from "@visx/react-spring"
 const LineChart = ({
   width,
   height,
-  margin = { top: 60, left: 50, right: 80, bottom: 80 },
+  margin = { top: 60, left: 60, right: 80, bottom: 80 },
 }) => {
   // dimensions
   const { data, x, y, color } = useSelection()

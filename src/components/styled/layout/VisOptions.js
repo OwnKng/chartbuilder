@@ -5,7 +5,7 @@ import styled from "styled-components"
 import { Panel } from "../elements/Panel"
 
 const VisOptions = ({
-  classname,
+  className,
   data,
   x,
   y,
@@ -19,7 +19,7 @@ const VisOptions = ({
   if (!x) return null
 
   return (
-    <div className={classname}>
+    <div className={className}>
       <Panel>
         <span>Select X</span>
         <VizInput
@@ -67,4 +67,9 @@ const VisOptions = ({
   )
 }
 
-export default styled(VisOptions)``
+export default styled(VisOptions)`
+  label {
+    color: var(--color-paragraph);
+    margin-left: 10px;
+  }
+`

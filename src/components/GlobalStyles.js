@@ -14,36 +14,59 @@ ${normalize}
     --color-accent: #FF0A12;
   }
   
-  body {
-    margin: 0px;
-    box-sizing: border-box;
-    background: var(--color-background);
-  }
+@import url('https://fonts.googleapis.com/css?family=Saira:400|Archivo+Black:400');
 
-  h1, h2, h3, h4, h5 {
-    color: var(--color-heading);
-  }
+html {font-size: 80%;} /*16px*/
 
-  h1 {
-      text-transform: uppercase;
-      padding: 0px;
-      margin: 0px;
-  }
+body {
+  background: white;
+  font-family: 'Saira', sans-serif;
+  font-weight: 400;
+  line-height: 1.75;
+  height: 100vh;
+  margin: 0px;
+  box-sizing: border-box;
+  background: var(--color-background);
+}
 
-  p {
-      color: var(--color-paragraph);
-      margin: 0px;
-  }
-  
-  .app {
-    display: grid;
-    grid-template-areas: "header header" "visualisation form" "footer footer";
-    grid-template-columns: 70vw 30vw;
-    grid-template-rows: 5vh 90vh 5vh;
-    margin: 0px auto;
-    height: 100vh;
-    margin: 0px;
-    grid-gap: 10px;
+p {
+  color: var(--color-paragraph);
+  margin: 0px;
+}
+
+h1, h2, h3, h4, h5 {
+  color: var(--color-heading);
+  margin: 3rem 0 1.38rem;
+  font-family: 'Archivo Black', sans-serif;
+  font-weight: 400;
+  line-height: 1.3;
+}
+
+h1 {
+  font-size: 3.052rem;
+  text-transform: uppercase;
+  padding: 0px;
+  margin: 0px;
+  font-weight: 800;
+}
+
+h2 {font-size: 2.441rem;}
+
+h3 {font-size: 1.953rem;}
+
+h4 {font-size: 1.563rem;
+  margin: 0px;
+  text-transform: uppercase;}
+
+h5 {font-size: 1.25rem;}
+
+small, .text_small {font-size: 0.8rem;}
+
+
+  .visx-axis-label {
+    fill: var(--color-paragraph);
+    font-size: 12px;
+    text-transform: capitalize;
   }
   
   .header {
@@ -54,10 +77,7 @@ ${normalize}
     grid-area: footer;
   }
   
-  h4 {
-    margin: 0px;
-    text-transform: uppercase;
-  }
+
   
 `
 

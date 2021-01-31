@@ -6,8 +6,8 @@ export const visOptions = {
     reorder: true,
   },
   point: {
-    x: ["character", "number"],
-    y: ["number", "character"],
+    x: ["number"],
+    y: ["number"],
     color: ["character", "none"],
   },
   line: {

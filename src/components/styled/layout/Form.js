@@ -6,6 +6,7 @@ import { econ, econTs, econTs2018 } from "../../../data/index"
 import styled from "styled-components"
 import ChartData from "./ChartData"
 import Style from "./Style"
+import { elevation } from "../utilities"
 
 const Form = ({ className }) => {
   const { updateSelections } = useSelection()
@@ -52,4 +53,8 @@ export default styled(Form)`
   background: var(--color-foreground);
   display: flex;
   grid-template-columns: repeat(3, auto);
+  ${elevation[1]};
+  h2 {
+    cursor: pointer;
+  }
 `

@@ -15,7 +15,7 @@ import { extent } from "d3"
 const Chart = ({
   width,
   height,
-  margin = { top: 60, left: 50, right: 80, bottom: 80 },
+  margin = { top: 60, left: 60, right: 80, bottom: 80 },
 }) => {
   const { data, x, y, color, geometry } = useSelection()
 

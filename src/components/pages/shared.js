@@ -1,8 +1,8 @@
-import Form from "../styled/layout/Form"
 import Visualisation from "../styled/layout/Visualisation"
 import { useQuery } from "@apollo/react-hooks"
 import gql from "graphql-tag"
 import { useSelection } from "../../hooks"
+import styled from "styled-components"
 
 const GETCHART = gql`
   query GetChart($id: ID!) {
@@ -21,7 +21,7 @@ const GETCHART = gql`
   }
 `
 
-const Shared = ({ match }) => {
+const Shared = ({ className, match }) => {
   const id = match.url.substring(1)
   const { updateSelections } = useSelection()
 
@@ -40,13 +40,13 @@ const Shared = ({ match }) => {
   if (error) return null
 
   return (
-    <div className='app'>
-      <div className='header'>Header</div>
+    <div className={className}>
       <Visualisation />
-      <Form />
-      <div className='footer'>footer</div>
     </div>
   )
 }
 
-export default Shared
+export default styled(Shared)`
+  width: 99vw;
+  margin: 0px auto;
+`

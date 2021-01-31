@@ -13,5 +13,7 @@ export default styled(Header)`
   place-items: center;
   background: var(--color-foreground);
   padding: 0 35px;
-  ${elevation[3]};
+  ${elevation[1]};
+  min-height: 8vh;
+  margin-bottom: 10px;
 `

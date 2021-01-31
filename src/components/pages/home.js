@@ -1,15 +1,18 @@
 import Form from "../styled/layout/Form"
 import Visualisation from "../styled/layout/Visualisation"
-import Header from "../styled/layout/Header"
-import Footer from "../styled/layout/Footer"
+import styled from "styled-components"
 
-const Home = () => (
-  <div className='app'>
-    <Header />
+const Home = ({ className }) => (
+  <div className={className}>
     <Visualisation />
     <Form />
-    <Footer />
   </div>
 )
 
-export default Home
+export default styled(Home)`
+  display: grid;
+  grid-template-areas: "visualisation form";
+  grid-template-columns: 69vw 30vw;
+  grid-template-rows: 85vh;
+  justify-content: center;
+`
