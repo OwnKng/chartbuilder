@@ -1,14 +1,11 @@
 import styled from "styled-components"
-import { useSelection } from "../../hooks"
-import Scatter from "../visualisations/Scatter"
-import Bar from "../visualisations/Bar"
-import Line from "../visualisations/Line"
-import { useState } from "react"
+import { useSelection } from "../../../hooks"
+import Scatter from "../../visualisations/Scatter"
+import Bar from "../../visualisations/Bar"
+import Line from "../../visualisations/Line"
 
 const Visualisation = ({ className }) => {
-  const { x, geometry } = useSelection()
-  const [title, setTitle] = useState("Chart title")
-  const [subtitle, setSubtile] = useState("subtitle")
+  const { x, geometry, title, subtitle, updateSelections } = useSelection()
 
   const renderChart = (geometry) => {
     switch (geometry) {
@@ -29,13 +26,13 @@ const Visualisation = ({ className }) => {
         type='text'
         className='title'
         value={title}
-        onChange={(e) => setTitle(e.target.value)}
+        onChange={(e) => updateSelections({ title: e.target.value })}
       />
       <input
         type='text'
         className='subtitle'
         value={subtitle}
-        onChange={(e) => setSubtile(e.target.value)}
+        onChange={(e) => updateSelections({ subtitle: e.target.value })}
       />
       {x && <div style={{ position: "relative" }}>{renderChart(geometry)}</div>}
     </div>
@@ -48,14 +45,15 @@ export default styled(Visualisation)`
   grid-template-areas: "title" "subtitle" "visualisation";
   grid-template-rows: 5vh 5vh 80vh;
   width: 100%;
-  border: 5px solid black;
-  border-right: none;
   padding: 0.5rem;
+  background: var(--color-foreground);
 
   input {
     border: none;
     outline: none;
-    margin: 0px 30px;
+    margin: 2px 30px;
+    background: var(--color-input);
+    color: var(--color-heading);
   }
 
   .title {

@@ -2,15 +2,20 @@ import ParentSize from "@visx/responsive/lib/components/ParentSize"
 import { Circle } from "@visx/shape"
 import { scaleOrdinal } from "@visx/scale"
 import { schemeSet1 } from "d3"
-import { AnimatedAxis } from "@visx/react-spring"
+import { AnimatedGridRows } from "@visx/react-spring"
 import { useSelection } from "../../hooks"
 import { LegendOrdinal } from "@visx/legend"
-import { useScale, useType } from "../../hooks"
+import { useScale } from "../../hooks"
+import AxisLeft from "./AxisLeft"
+import AxisBottom from "./AxisBottom"
+
+import { scaleLinear } from "@visx/scale"
+import { extent } from "d3"
 
 const Chart = ({
   width,
   height,
-  margin = { top: 30, left: 50, right: 50, bottom: 40 },
+  margin = { top: 60, left: 50, right: 80, bottom: 80 },
 }) => {
   const { data, x, y, color, geometry } = useSelection()
 
@@ -25,10 +30,13 @@ const Chart = ({
 
   // Create scales
   const [xScale] = useScale(data, getX)
-  xScale.range([margin.left, innerWidth])
+  xScale.range([margin.left, innerWidth + margin.left])
 
-  const [yScale] = useScale(data, getY)
-  yScale.range([innerHeight, margin.top])
+  const yScale = scaleLinear({
+    range: [innerHeight + margin.top, margin.top],
+    domain: extent(data, getY),
+    nice: true,
+  })
 
   const colorScale = scaleOrdinal({
     domain: [...new Set(data.map(getColor))],
@@ -39,6 +47,16 @@ const Chart = ({
   return (
     <>
       <svg width={width} height={height}>
+        <g transform={`translate(${margin.left},0)`}>
+          <AxisLeft scale={yScale} />
+          <AnimatedGridRows
+            scale={yScale}
+            stroke={"var(--color-paragraph)"}
+            strokeWidth={0.2}
+            width={innerWidth}
+          />
+        </g>
+        <AxisBottom top={innerHeight + margin.top} scale={xScale} />
         {geometry === "point" &&
           data.map((point, i) => (
             <Circle
@@ -49,8 +67,6 @@ const Chart = ({
               fill={colorScale(getColor(point))}
             />
           ))}
-        <AnimatedAxis left={margin.left} orientation='left' scale={yScale} />
-        <AnimatedAxis top={innerHeight} orientation='bottom' scale={xScale} />
       </svg>
       {color !== "none" ? (
         <LegendOrdinal
@@ -60,13 +76,14 @@ const Chart = ({
           labelMargin='0 30px 0 0'
           style={{
             position: "absolute",
-            top: margin.top / 2 - 10,
+            top: 10,
             left: margin.left,
             width: `100%`,
             display: "flex",
             fontSize: "12px",
             overflowX: "scroll",
             flexWrap: "wrap",
+            color: "var(--color-paragraph)",
           }}
         />
       ) : null}

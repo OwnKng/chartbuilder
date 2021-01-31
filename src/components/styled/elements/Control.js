@@ -44,10 +44,16 @@ export default styled(Controls)`
   grid-template-rows: 1fr;
   align-items: self-start;
   overflow: hidden;
-  border-left: 3px solid black;
+  border-left: 3px solid var(--color-background);
 
   h4 {
     margin: 10px 0px;
+  }
+
+  span {
+    color: var(--color-paragraph);
+    font-weight: bold;
+    margin: 20px 0px;
   }
 
   .wrapper {
@@ -57,5 +63,7 @@ export default styled(Controls)`
 
   .controls {
     padding: 0 1.5rem;
+    display: flex;
+    flex-direction: column;
   }
 `

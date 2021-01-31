@@ -1,4 +1,4 @@
-import Controls from "./styled/Control"
+import Controls from "../elements/Control"
 
 const ChartData = ({ open, setOpen, handleChange }) => {
   return (

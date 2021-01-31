@@ -1,6 +1,6 @@
-import Controls from "./styled/Control"
-import { useStyles } from "../../hooks"
-import { verticalLabels, horizontalLabels } from "./styled/elements/VisStyles"
+import Controls from "../elements/Control"
+import { useStyles } from "../../../hooks"
+import { verticalLabels, horizontalLabels } from "../elements/VisStyles"
 
 const Style = ({ open, setOpen }) => {
   const { updateStyles } = useStyles()

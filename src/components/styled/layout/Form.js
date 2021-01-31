@@ -1,8 +1,8 @@
 import { useState } from "react"
 import Options from "./Options"
 import ChartShare from "./ChartShare"
-import { useSelection } from "../../hooks"
-import { econ, econTs, econTs2018 } from "../../data/index"
+import { useSelection } from "../../../hooks"
+import { econ, econTs, econTs2018 } from "../../../data/index"
 import styled from "styled-components"
 import ChartData from "./ChartData"
 import Style from "./Style"
@@ -29,6 +29,7 @@ const Form = ({ className }) => {
     }
     updateSelections({
       data: selected,
+      uri: value,
     })
   }
 
@@ -48,8 +49,7 @@ const Form = ({ className }) => {
 
 export default styled(Form)`
   grid-area: form;
-  border: 5px solid black;
-  border-right: none;
+  background: var(--color-foreground);
   display: flex;
   grid-template-columns: repeat(3, auto);
 `

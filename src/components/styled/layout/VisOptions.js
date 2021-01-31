@@ -1,15 +1,26 @@
-import { useType } from "../../hooks"
+import { useType } from "../../../hooks"
 import { VizInput } from "./VizInput"
-import { ButtonOptions } from "./styled/elements/ButtonOptions"
+import { ButtonOptions } from "../elements/ButtonOptions"
+import styled from "styled-components"
+import { Panel } from "../elements/Panel"
 
-const VisOptions = ({ data, x, y, color, reordered, reorder, handleClick }) => {
+const VisOptions = ({
+  classname,
+  data,
+  x,
+  y,
+  color,
+  reordered,
+  reorder,
+  handleClick,
+}) => {
   const { types } = useType(data)
 
   if (!x) return null
 
   return (
-    <>
-      <div>
+    <div className={classname}>
+      <Panel>
         <span>Select X</span>
         <VizInput
           name='x'
@@ -17,8 +28,8 @@ const VisOptions = ({ data, x, y, color, reordered, reorder, handleClick }) => {
           accepted={x}
           handleClick={handleClick}
         />
-      </div>
-      <div>
+      </Panel>
+      <Panel>
         <span>Select Y</span>
         <VizInput
           name='y'
@@ -26,11 +37,11 @@ const VisOptions = ({ data, x, y, color, reordered, reorder, handleClick }) => {
           accepted={y}
           handleClick={handleClick}
         />
-      </div>
+      </Panel>
       {color && (
-        <div>
+        <Panel>
           <span>Color By</span>
-          <ButtonOptions onClick={() => handleClick({ color: false })}>
+          <ButtonOptions onClick={() => handleClick({ color: "none" })}>
             None
           </ButtonOptions>
           <VizInput
@@ -39,10 +50,10 @@ const VisOptions = ({ data, x, y, color, reordered, reorder, handleClick }) => {
             accepted={color}
             handleClick={handleClick}
           />
-        </div>
+        </Panel>
       )}
       {reorder && (
-        <div>
+        <Panel>
           <input
             type='checkbox'
             checked={reordered}
@@ -50,10 +61,10 @@ const VisOptions = ({ data, x, y, color, reordered, reorder, handleClick }) => {
             id='reorder'
           />
           <label htmlFor='reorder'>Reorder bars</label>
-        </div>
+        </Panel>
       )}
-    </>
+    </div>
   )
 }
 
-export default VisOptions
+export default styled(VisOptions)``

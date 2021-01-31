@@ -6,13 +6,14 @@ export const SelectionContext = createContext()
 export default function SelectionProvider({ children }) {
   const [selections, setSelection] = useState({
     data: econ,
+    uri: "economicData",
     x: "gdpPerCap",
     y: "lifeExpectancy",
     color: "region",
     geometry: "point",
     reordered: false,
-    title: "",
-    subtitle: "",
+    title: "Chart title",
+    subtitle: "Subtitle",
   })
 
   const updateSelections = (value) => {
@@ -27,7 +28,7 @@ export default function SelectionProvider({ children }) {
         ...value,
         x: false,
         y: false,
-        color: false,
+        color: "none",
       }
     } else {
       newSelections = { ...selections, ...value }

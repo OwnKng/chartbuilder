@@ -1,4 +1,4 @@
-import { ButtonOptions } from "../layout/styled/elements/ButtonOptions"
+import { ButtonOptions } from "../elements/ButtonOptions"
 
 export const VizInput = ({ name, types, accepted, handleClick }) => {
   return (

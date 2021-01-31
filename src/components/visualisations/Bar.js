@@ -2,25 +2,24 @@ import ParentSize from "@visx/responsive/lib/components/ParentSize"
 import { Group } from "@visx/group"
 import { Bar } from "@visx/shape"
 import { schemeSet1 } from "d3"
-import { AnimatedAxis } from "@visx/react-spring"
-import { AxisBottom } from "@visx/axis"
 import { useSelection } from "../../hooks"
-import { useStyles } from "../../hooks"
-import { LegendOrdinal } from "@visx/legend"
 import { scaleBand, scaleLinear, scaleOrdinal } from "@visx/scale"
-import { max, format } from "d3"
+import { max } from "d3"
+import AxisLeft from "./AxisLeft"
+import AxisBottom from "./AxisBottom"
+import Legend from "./Legend"
+import { AnimatedGridRows } from "@visx/react-spring"
 
 const BarChart = ({
   width,
   height,
-  margin = { top: 30, left: 30, right: 30, bottom: 100 },
+  margin = { top: 60, left: 50, right: 80, bottom: 80 },
 }) => {
   const { data, x, y, color, reordered } = useSelection()
-  const { text } = useStyles()
 
   let barData = [...data]
 
-  if (reordered) barData.sort((a, b) => a[y] - b[y])
+  if (reordered) barData.sort((a, b) => b[y] - a[y])
 
   // Set dimensions
   const innerWidth = width - margin.left - margin.right
@@ -34,13 +33,13 @@ const BarChart = ({
   // Create scales
   const xScale = scaleBand({
     domain: [...new Set(barData.map(getX))],
-    range: [margin.left, innerWidth],
+    range: [margin.left, innerWidth + margin.left],
     padding: 0.1,
   })
 
   const yScale = scaleLinear({
     domain: [0, max(barData, getY)],
-    range: [innerHeight, margin.top],
+    range: [innerHeight + margin.top, margin.top],
     nice: true,
   })
 
@@ -53,12 +52,21 @@ const BarChart = ({
   return (
     <>
       <svg width={width} height={height}>
+        <g transform={`translate(${margin.left},0)`}>
+          <AxisLeft scale={yScale} />
+          <AnimatedGridRows
+            scale={yScale}
+            stroke={"var(--color-paragraph)"}
+            strokeWidth={0.2}
+            width={innerWidth}
+          />
+        </g>
         <Group>
           {barData.map((d, i) => {
             const barWidth = xScale.bandwidth()
-            const barHeight = innerHeight - yScale(getY(d))
+            const barHeight = innerHeight + margin.top - yScale(getY(d))
             const barX = xScale(getX(d))
-            const barY = innerHeight - barHeight
+            const barY = innerHeight + margin.top - barHeight
             return (
               <Bar
                 key={`bar-${i}`}
@@ -71,37 +79,14 @@ const BarChart = ({
             )
           })}
         </Group>
-        <AnimatedAxis
-          left={margin.left}
-          orientation='left'
-          scale={yScale}
-          tickFormat={format(".2s")}
-        />
         <AxisBottom
-          top={innerHeight}
-          orientation='bottom'
+          top={innerHeight + margin.top}
+          animated={false}
           scale={xScale}
-          numTicks={xScale.domain().length}
-          tickLabelProps={() => text}
         />
       </svg>
-      {color !== false ? (
-        <LegendOrdinal
-          scale={colorScale}
-          direction='row'
-          shape='circle'
-          labelMargin='0 30px 0 0'
-          style={{
-            position: "absolute",
-            top: margin.top / 2 - 10,
-            left: margin.left,
-            width: `100%`,
-            display: "flex",
-            fontSize: "12px",
-            overflowX: "scroll",
-            flexWrap: "wrap",
-          }}
-        />
+      {color !== "none" ? (
+        <Legend left={margin.left} scale={colorScale} />
       ) : null}
     </>
   )
