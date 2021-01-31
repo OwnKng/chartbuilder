@@ -2,6 +2,8 @@ import Controls from "../elements/Control"
 import { useMutation } from "@apollo/react-hooks"
 import gql from "graphql-tag"
 import { useSelection } from "../../../hooks"
+import { Button } from "../elements/Button"
+import ShareLink from "./ShareLink"
 
 const SAVEGRAPH = gql`
   mutation CreateGraph(
@@ -32,41 +34,26 @@ const SAVEGRAPH = gql`
 `
 
 const ChartShare = ({ open, setOpen }) => {
-  const [saveGraph, newChart] = useMutation(SAVEGRAPH)
-  const {
-    data,
-    x,
-    y,
-    geometry,
-    color,
-    reordered,
-    title,
-    subtitle,
-  } = useSelection()
+  const [saveGraph, { data, error }] = useMutation(SAVEGRAPH)
+  const { selections } = useSelection()
 
   return (
     <Controls title='Share' position={open} setPosition={() => setOpen("data")}>
       <h4>Share chart</h4>
-      <button
+      <Button
         onClick={() =>
           saveGraph({
             variables: {
-              data: JSON.stringify(data),
-              x: x,
-              y: y,
-              geometry: geometry,
-              color: color,
-              reordered: reordered,
-              title: title,
-              subtitle: subtitle,
+              ...selections,
+              data: JSON.stringify(selections.data),
             },
           })
         }
       >
-        Share
-      </button>
-      <button>Download</button>
-      {newChart.data && <p>{newChart.data.createGraph._id}</p>}
+        Generate Share Link
+      </Button>
+      {error && <p>An error occured</p>}
+      {data && <ShareLink id={data.createGraph._id} />}
     </Controls>
   )
 }

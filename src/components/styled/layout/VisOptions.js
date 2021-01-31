@@ -1,8 +1,9 @@
 import { useType } from "../../../hooks"
-import { VizInput } from "./VizInput"
+import AesInput from "./AesInput"
 import { ButtonOptions } from "../elements/ButtonOptions"
 import styled from "styled-components"
 import { Panel } from "../elements/Panel"
+import { useActive } from "../../../hooks"
 
 const VisOptions = ({
   className,
@@ -15,6 +16,7 @@ const VisOptions = ({
   handleClick,
 }) => {
   const { types } = useType(data)
+  const { active } = useActive("color")
 
   if (!x) return null
 
@@ -22,7 +24,7 @@ const VisOptions = ({
     <div className={className}>
       <Panel>
         <span>Select X</span>
-        <VizInput
+        <AesInput
           name='x'
           types={types}
           accepted={x}
@@ -31,7 +33,7 @@ const VisOptions = ({
       </Panel>
       <Panel>
         <span>Select Y</span>
-        <VizInput
+        <AesInput
           name='y'
           types={types}
           accepted={y}
@@ -41,10 +43,15 @@ const VisOptions = ({
       {color && (
         <Panel>
           <span>Color By</span>
-          <ButtonOptions onClick={() => handleClick({ color: "none" })}>
+          <ButtonOptions
+            style={{
+              background: active === "none" ? "var(--color-selected)" : "",
+            }}
+            onClick={() => handleClick({ color: "none" })}
+          >
             None
           </ButtonOptions>
-          <VizInput
+          <AesInput
             name='color'
             types={types}
             accepted={color}

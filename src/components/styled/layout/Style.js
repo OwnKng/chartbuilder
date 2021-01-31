@@ -11,7 +11,7 @@ const Style = ({ open, setOpen }) => {
       position={open}
       setPosition={() => setOpen("style")}
     >
-      <h4>Style visualisation</h4>
+      <h4>Select Theme</h4>
       <button
         onClick={() =>
           updateStyles({

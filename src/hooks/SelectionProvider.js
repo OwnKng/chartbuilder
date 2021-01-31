@@ -6,7 +6,6 @@ export const SelectionContext = createContext()
 export default function SelectionProvider({ children }) {
   const [selections, setSelection] = useState({
     data: econ,
-    uri: "economicData",
     x: "gdpPerCap",
     y: "lifeExpectancy",
     color: "region",
@@ -38,7 +37,7 @@ export default function SelectionProvider({ children }) {
 
   return (
     <SelectionContext.Provider
-      value={{ ...selections, updateSelections, setSelection }}
+      value={{ ...selections, updateSelections, setSelection, selections }}
     >
       {children}
     </SelectionContext.Provider>

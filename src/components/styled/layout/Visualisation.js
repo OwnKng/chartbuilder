@@ -53,7 +53,8 @@ export default styled(Visualisation)`
   input {
     border: none;
     outline: none;
-    margin: 2px 30px;
+    margin: 3px 30px;
+    padding: 0px 0.5rem;
     background: var(--color-input);
     color: var(--color-heading);
   }

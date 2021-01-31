@@ -7,11 +7,14 @@ ${normalize}
 :root {
     --color-background: #03080D;
     --color-foreground: #0C1A29;
+    --color-selected: #2F4459;
     --color-input: #12283F;
     --color-paragraph: #a7a9be;
     --color-heading: #fffffe;
     --color-boxshadow: #2e2f3e;
     --color-accent: #FF0A12;
+    --color-button: #5dfdcb;
+    --color-button-hover: #2ABF90;
   }
   
 @import url('https://fonts.googleapis.com/css?family=Saira:400|Archivo+Black:400');

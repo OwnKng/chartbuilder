@@ -65,5 +65,6 @@ export default styled(Controls)`
     padding: 0 1.5rem;
     display: flex;
     flex-direction: column;
+    align-items: stretch;
   }
 `

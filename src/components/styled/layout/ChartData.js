@@ -1,4 +1,6 @@
 import Controls from "../elements/Control"
+import { Button } from "../elements/Button"
+import { Select } from "../elements/Select"
 
 const ChartData = ({ open, setOpen, handleChange }) => {
   return (
@@ -10,13 +12,13 @@ const ChartData = ({ open, setOpen, handleChange }) => {
     >
       <h4>Select data</h4>
       <div>
-        <select onChange={(e) => handleChange(e.target.value)}>
+        <Select onChange={(e) => handleChange(e.target.value)}>
           <option value='economicData'>Economic data</option>
           <option value='timeSeries'>Time series</option>
           <option value='timeSeries2018'>2018 data</option>
-        </select>
+        </Select>
       </div>
-      <button>Filter</button>
+      <Button>Filter</Button>
       <p>Select chart &#8594;</p>
     </Controls>
   )

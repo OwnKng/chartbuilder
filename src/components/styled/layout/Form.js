@@ -30,7 +30,6 @@ const Form = ({ className }) => {
     }
     updateSelections({
       data: selected,
-      uri: value,
     })
   }
 

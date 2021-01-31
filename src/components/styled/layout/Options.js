@@ -3,7 +3,7 @@ import Controls from "../elements/Control"
 import { visOptions } from "../../visualisations/visOptions"
 import VisOptions from "./VisOptions"
 import styled from "styled-components"
-import { ButtonOptions } from "../elements/ButtonOptions"
+import GeoInput from "../layout/GeoInput"
 
 const Panel = styled.div`
   display: flex;
@@ -20,32 +20,21 @@ const Options = ({ open, setOpen }) => {
 
   return (
     <Controls
-      title='Visualisation'
+      title='visualise'
       position={open}
       setPosition={() => setOpen("viz")}
     >
       <h4>Geometry</h4>
       <Panel>
-        <ButtonOptions
-          onClick={(e) => updateSelections({ geometry: e.target.value })}
-          value='point'
-        >
-          Point
-        </ButtonOptions>
-        <ButtonOptions
-          onClick={(e) => updateSelections({ geometry: e.target.value })}
-          value='bar'
-        >
-          Bar
-        </ButtonOptions>
-        <ButtonOptions
-          onClick={(e) => updateSelections({ geometry: e.target.value })}
-          value='line'
-        >
-          Line
-        </ButtonOptions>
+        {Object.keys(visOptions).map((geo, i) => (
+          <GeoInput
+            key={`geo-${i}`}
+            geometry={geo}
+            updateSelections={updateSelections}
+          />
+        ))}
       </Panel>
-      <h4>Map aesthetics</h4>
+      <h4>chart options</h4>
       <div>
         <VisOptions
           data={data}

@@ -10,6 +10,11 @@ export const ButtonOptions = styled.button`
   color: var(--color-paragraph);
   border: none;
   margin: 2px 1px;
+  font-size: 1.1rem;
+
+  :hover {
+    background: var(--color-selected);
+  }
 
   :focus {
     outline: none;

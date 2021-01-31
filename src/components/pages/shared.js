@@ -47,6 +47,6 @@ const Shared = ({ className, match }) => {
 }
 
 export default styled(Shared)`
-  width: 99vw;
+  width: 95vw;
   margin: 0px auto;
 `
