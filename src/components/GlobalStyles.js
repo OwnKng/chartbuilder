@@ -5,16 +5,16 @@ export const GlobalStyles = createGlobalStyle`
 ${normalize}
 
 :root {
-    --color-background: #03080D;
-    --color-foreground: #0C1A29;
-    --color-selected: #2F4459;
-    --color-input: #12283F;
-    --color-paragraph: #a7a9be;
-    --color-heading: #fffffe;
-    --color-boxshadow: #2e2f3e;
-    --color-accent: #FF0A12;
-    --color-button: #5dfdcb;
-    --color-button-hover: #2ABF90;
+    --color-background: ${({ theme }) => theme.background};
+    --color-foreground: ${({ theme }) => theme.foreground};
+    --color-selected: ${({ theme }) => theme.selected};
+    --color-input: ${({ theme }) => theme.input};
+    --color-paragraph: ${({ theme }) => theme.paragraph};
+    --color-heading: ${({ theme }) => theme.heading};
+    --color-boxshadow: ${({ theme }) => theme.boxshadow};
+    --color-accent: ${({ theme }) => theme.accent};
+    --color-button: ${({ theme }) => theme.button};
+    --color-button-hover: ${({ theme }) => theme.hover};
   }
   
 @import url('https://fonts.googleapis.com/css?family=Saira:400|Archivo+Black:400');
@@ -35,6 +35,10 @@ body {
 p {
   color: var(--color-paragraph);
   margin: 0px;
+}
+
+span {
+  color: var(--color-paragraph);
 }
 
 h1, h2, h3, h4, h5 {
@@ -80,19 +84,4 @@ small, .text_small {font-size: 0.8rem;}
     grid-area: footer;
   }
   
-
-  
 `
-
-/*
-cardParagraph: "#a7a9be",
-button: "#00A7E1",
-buttonText: "#fffffe",
-stroke: "#a7a9be",
-main: "#fffffe",
-highlight: "#ff8906",
-secondary: "#00A7E1",
-tertiary: "#FB3640",
-boxShadow: "#2e2f3e",
-
-*/

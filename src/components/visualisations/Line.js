@@ -1,12 +1,13 @@
 import ParentSize from "@visx/responsive/lib/components/ParentSize"
 import { useSelection } from "../../hooks"
 import { scaleLinear, scaleOrdinal } from "@visx/scale"
-import { extent, group, schemeSet1 } from "d3"
+import { extent, group } from "d3"
 import { LinePath } from "@visx/shape"
 import Legend from "./Legend"
 import AxisLeft from "./AxisLeft"
 import AxisBottom from "./AxisBottom"
 import { AnimatedGridRows } from "@visx/react-spring"
+import { palettes } from "../styled/utilities"
 
 const LineChart = ({
   width,
@@ -14,7 +15,7 @@ const LineChart = ({
   margin = { top: 60, left: 60, right: 80, bottom: 80 },
 }) => {
   // dimensions
-  const { data, x, y, color } = useSelection()
+  const { data, x, y, color, palette } = useSelection()
 
   // Set dimensions
   const innerWidth = width - margin.left - margin.right
@@ -40,7 +41,7 @@ const LineChart = ({
 
   const colorScale = scaleOrdinal({
     domain: [...new Set(data.map(getColor))],
-    range: schemeSet1,
+    range: palettes[palette],
   })
 
   // Group data

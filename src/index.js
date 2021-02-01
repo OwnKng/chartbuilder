@@ -3,16 +3,13 @@ import ReactDOM from "react-dom"
 import App from "./components/App"
 import reportWebVitals from "./reportWebVitals"
 import SelectionProvider from "./hooks/SelectionProvider"
-import StylesProvider from "./hooks/StylesProvider"
 import { ApolloProvider } from "@apollo/react-hooks"
 import client from "./client"
 
 ReactDOM.render(
   <ApolloProvider client={client}>
     <SelectionProvider>
-      <StylesProvider>
-        <App />
-      </StylesProvider>
+      <App />
     </SelectionProvider>
   </ApolloProvider>,
   document.getElementById("root")

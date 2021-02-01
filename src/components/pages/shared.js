@@ -16,6 +16,7 @@ const GETCHART = gql`
       color
       reordered
       title
+      theme
       subtitle
     }
   }

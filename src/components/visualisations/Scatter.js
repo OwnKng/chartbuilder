@@ -1,23 +1,22 @@
 import ParentSize from "@visx/responsive/lib/components/ParentSize"
 import { Circle } from "@visx/shape"
 import { scaleOrdinal } from "@visx/scale"
-import { schemeSet1 } from "d3"
 import { AnimatedGridRows } from "@visx/react-spring"
 import { useSelection } from "../../hooks"
 import { LegendOrdinal } from "@visx/legend"
 import { useScale } from "../../hooks"
 import AxisLeft from "./AxisLeft"
 import AxisBottom from "./AxisBottom"
-
 import { scaleLinear } from "@visx/scale"
 import { extent } from "d3"
+import { palettes } from "../styled/utilities"
 
 const Chart = ({
   width,
   height,
   margin = { top: 60, left: 60, right: 80, bottom: 80 },
 }) => {
-  const { data, x, y, color, geometry } = useSelection()
+  const { data, x, y, color, geometry, palette } = useSelection()
 
   // Set dimensions
   const innerWidth = width - margin.left - margin.right
@@ -40,7 +39,7 @@ const Chart = ({
 
   const colorScale = scaleOrdinal({
     domain: [...new Set(data.map(getColor))],
-    range: schemeSet1,
+    range: palettes[palette],
   })
 
   // Return the chart

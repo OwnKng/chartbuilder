@@ -29,6 +29,7 @@ export default styled(ShareLink)`
   white-space: wrap;
   margin-top: 10px;
   a {
+    color: var(--color-accent);
     word-wrap: break-word;
   }
   h5 {

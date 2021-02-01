@@ -3,7 +3,8 @@ import Controls from "../elements/Control"
 import { visOptions } from "../../visualisations/visOptions"
 import VisOptions from "./VisOptions"
 import styled from "styled-components"
-import GeoInput from "../layout/GeoInput"
+import GeoInput from "./GeoInput"
+import { NextSpan } from "../elements/NextSpan"
 
 const Panel = styled.div`
   display: flex;
@@ -15,7 +16,7 @@ const Panel = styled.div`
   }
 `
 
-const Options = ({ open, setOpen }) => {
+const Geometry = ({ open, setOpen }) => {
   const { data, reordered, geometry, updateSelections } = useSelection()
 
   return (
@@ -34,7 +35,7 @@ const Options = ({ open, setOpen }) => {
           />
         ))}
       </Panel>
-      <h4>chart options</h4>
+      <h4>Options</h4>
       <div>
         <VisOptions
           data={data}
@@ -43,8 +44,9 @@ const Options = ({ open, setOpen }) => {
           {...visOptions[geometry]}
         />
       </div>
+      <NextSpan onClick={() => setOpen("style")}>Style chart &#8594;</NextSpan>
     </Controls>
   )
 }
 
-export default Options
+export default Geometry

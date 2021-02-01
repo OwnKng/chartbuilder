@@ -11,8 +11,10 @@ export default function SelectionProvider({ children }) {
     color: "region",
     geometry: "point",
     reordered: false,
+    theme: "dark",
     title: "Chart title",
     subtitle: "Subtitle",
+    palette: "default",
   })
 
   const updateSelections = (value) => {
@@ -20,7 +22,11 @@ export default function SelectionProvider({ children }) {
     let newSelections
 
     if (key === "data") {
-      newSelections = value
+      newSelections = {
+        ...value,
+        theme: selections.theme,
+        palette: selections.palette,
+      }
     } else if (key === "geometry") {
       newSelections = {
         ...selections,

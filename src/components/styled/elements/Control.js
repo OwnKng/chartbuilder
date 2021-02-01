@@ -3,7 +3,7 @@ import { motion } from "framer-motion"
 
 const Controls = ({ className, children, title, position, setPosition }) => {
   const variants = {
-    open: { width: "15vw" },
+    open: { width: "20vw" },
     closed: { width: "0px" },
     transition: "ease",
   }
@@ -34,16 +34,16 @@ export default styled(Controls)`
     margin: 0px;
     position: absolute;
     top: 10px;
-    left: 0;
+    left: 0px;
     writing-mode: vertical-rl;
     text-transform: uppercase;
   }
 
   display: grid;
-  grid-template-columns: 50px auto;
+  grid-template-columns: 40px auto;
   grid-template-rows: 1fr;
   align-items: self-start;
-  overflow: hidden;
+  overflow-y: scroll;
   border-left: 3px solid var(--color-background);
 
   h4 {
@@ -62,9 +62,8 @@ export default styled(Controls)`
   }
 
   .controls {
-    padding: 0 1.5rem;
+    padding: 0 0.8rem;
     display: flex;
     flex-direction: column;
-    align-items: stretch;
   }
 `

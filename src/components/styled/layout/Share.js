@@ -15,6 +15,8 @@ const SAVEGRAPH = gql`
     $reordered: Boolean
     $title: String
     $subtitle: String
+    $theme: String!
+    $palette: String!
   ) {
     createGraph(
       input: {
@@ -26,6 +28,8 @@ const SAVEGRAPH = gql`
         reordered: $reordered
         title: $title
         subtitle: $subtitle
+        theme: $theme
+        palette: $palette
       }
     ) {
       _id
@@ -38,7 +42,11 @@ const ChartShare = ({ open, setOpen }) => {
   const { selections } = useSelection()
 
   return (
-    <Controls title='Share' position={open} setPosition={() => setOpen("data")}>
+    <Controls
+      title='Share'
+      position={open}
+      setPosition={() => setOpen("share")}
+    >
       <h4>Share chart</h4>
       <Button
         onClick={() =>

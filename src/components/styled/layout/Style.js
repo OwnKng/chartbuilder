@@ -1,9 +1,10 @@
 import Controls from "../elements/Control"
-import { useStyles } from "../../../hooks"
-import { verticalLabels, horizontalLabels } from "../elements/VisStyles"
+import { ButtonOptions } from "../elements/ButtonOptions"
+import { useSelection } from "../../../hooks"
+import { NextSpan } from "../elements/NextSpan"
 
 const Style = ({ open, setOpen }) => {
-  const { updateStyles } = useStyles()
+  const { updateSelections } = useSelection()
 
   return (
     <Controls
@@ -11,25 +12,24 @@ const Style = ({ open, setOpen }) => {
       position={open}
       setPosition={() => setOpen("style")}
     >
-      <h4>Select Theme</h4>
-      <button
-        onClick={() =>
-          updateStyles({
-            text: verticalLabels,
-          })
-        }
-      >
-        Vertical
-      </button>
-      <button
-        onClick={() =>
-          updateStyles({
-            text: horizontalLabels,
-          })
-        }
-      >
-        Horizontal
-      </button>
+      <h4>Style chart</h4>
+      <span>Select Theme</span>
+      <ButtonOptions onClick={() => updateSelections({ theme: "light" })}>
+        Light Theme
+      </ButtonOptions>
+      <ButtonOptions onClick={() => updateSelections({ theme: "dark" })}>
+        Dark Theme
+      </ButtonOptions>
+      <span>Select Color Palette</span>
+      <ButtonOptions onClick={() => updateSelections({ palette: "default" })}>
+        Default
+      </ButtonOptions>
+      <ButtonOptions onClick={() => updateSelections({ palette: "lancet" })}>
+        Two
+      </ButtonOptions>
+      <NextSpan onClick={() => setOpen("share")}>
+        Share your chart &#8594;
+      </NextSpan>
     </Controls>
   )
 }

@@ -1,7 +1,7 @@
 import ParentSize from "@visx/responsive/lib/components/ParentSize"
 import { Group } from "@visx/group"
 import { Bar } from "@visx/shape"
-import { schemeSet1 } from "d3"
+import { format, bisectRight } from "d3"
 import { useSelection } from "../../hooks"
 import { scaleBand, scaleLinear, scaleOrdinal } from "@visx/scale"
 import { max } from "d3"
@@ -9,13 +9,17 @@ import AxisLeft from "./AxisLeft"
 import AxisBottom from "./AxisBottom"
 import Legend from "./Legend"
 import { AnimatedGridRows } from "@visx/react-spring"
+import { useCallback } from "react"
+import { useTooltip, TooltipWithBounds } from "@visx/tooltip"
+import { localPoint } from "@visx/event"
+import { palettes } from "../styled/utilities"
 
 const BarChart = ({
   width,
   height,
   margin = { top: 60, left: 60, right: 80, bottom: 80 },
 }) => {
-  const { data, x, y, color, reordered } = useSelection()
+  const { data, x, y, color, reordered, palette } = useSelection()
 
   let barData = [...data]
 
@@ -45,8 +49,35 @@ const BarChart = ({
 
   const colorScale = scaleOrdinal({
     domain: [...new Set(barData.map(getColor))],
-    range: schemeSet1,
+    range: palettes[palette],
   })
+
+  const {
+    showTooltip,
+    hideTooltip,
+    tooltipData,
+    tooltipTop = 0,
+    tooltipLeft = 0,
+  } = useTooltip()
+
+  const handleTooltip = useCallback(
+    (event) => {
+      const { x: xPos } = localPoint(event)
+      const range = xScale.domain().map(xScale)
+      const index = bisectRight(range, xPos)
+      const xKeys = barData.map((d) => getX(d))
+
+      const selected = barData.filter((d) => getX(d) === xKeys[index - 1])
+      const yMax = max(selected, getY)
+
+      showTooltip({
+        tooltipData: selected,
+        tooltipLeft: xScale(xKeys[index - 1]),
+        tooltipTop: yScale(yMax),
+      })
+    },
+    [barData, getX, getY, showTooltip, xScale, yScale]
+  )
 
   // Return the chart
   return (
@@ -84,7 +115,32 @@ const BarChart = ({
           animated={false}
           scale={xScale}
         />
+        <rect
+          x={margin.left}
+          y={margin.top}
+          width={innerWidth}
+          height={innerHeight}
+          fill='transparent'
+          onTouchStart={handleTooltip}
+          onTouchMove={handleTooltip}
+          onMouseMove={handleTooltip}
+          onMouseLeave={() => hideTooltip()}
+        />
       </svg>
+      {tooltipData && (
+        <TooltipWithBounds
+          key={Math.random()}
+          top={tooltipTop - 40}
+          left={tooltipLeft}
+        >
+          {tooltipData.map((row) => (
+            <div>
+              <p>{getX(row)}</p>
+              <span>{format(",d")(getY(row))}</span>
+            </div>
+          ))}
+        </TooltipWithBounds>
+      )}
       {color !== "none" ? (
         <Legend left={margin.left} scale={colorScale} />
       ) : null}

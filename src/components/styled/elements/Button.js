@@ -6,7 +6,7 @@ export const Button = styled.button`
   border-radius: 6px;
   border: none;
   margin: 10px 0px;
-  ${elevation[2]};
+  ${elevation[1]};
   background: var(--color-button);
   font-size: 1.2rem;
   transition: background 0.2s ease;
