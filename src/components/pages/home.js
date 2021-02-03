@@ -10,9 +10,10 @@ const Home = ({ className }) => (
 )
 
 export default styled(Home)`
-  display: grid;
-  grid-template-areas: "visualisation form";
-  grid-template-columns: 64vw 35vw;
-  grid-template-rows: 85vh;
+  display: flex;
   justify-content: center;
+
+  @media only screen and (max-width: 600px) {
+    display: block;
+  }
 `

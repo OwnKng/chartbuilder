@@ -4,6 +4,7 @@ import gql from "graphql-tag"
 import { useSelection } from "../../../hooks"
 import { Button } from "../elements/Button"
 import ShareLink from "./ShareLink"
+import { Menu } from "../elements/Menu"
 
 const SAVEGRAPH = gql`
   mutation CreateGraph(
@@ -42,27 +43,28 @@ const ChartShare = ({ open, setOpen }) => {
   const { selections } = useSelection()
 
   return (
-    <Controls
-      title='Share'
-      position={open}
-      setPosition={() => setOpen("share")}
-    >
-      <h4>Share chart</h4>
-      <Button
-        onClick={() =>
-          saveGraph({
-            variables: {
-              ...selections,
-              data: JSON.stringify(selections.data),
-            },
-          })
-        }
-      >
-        Generate Share Link
-      </Button>
-      {error && <p>An error occured</p>}
-      {data && <ShareLink id={data.createGraph._id} />}
-    </Controls>
+    <Menu>
+      <div className='title' onClick={() => setOpen("share")}>
+        <h2>Share</h2>
+      </div>
+      <Controls open={open}>
+        <h4>Share chart</h4>
+        <Button
+          onClick={() =>
+            saveGraph({
+              variables: {
+                ...selections,
+                data: JSON.stringify(selections.data),
+              },
+            })
+          }
+        >
+          Generate Share Link
+        </Button>
+        {error && <p>An error occured</p>}
+        {data && <ShareLink id={data.createGraph._id} />}
+      </Controls>
+    </Menu>
   )
 }
 

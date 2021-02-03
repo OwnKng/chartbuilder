@@ -5,6 +5,7 @@ import VisOptions from "./VisOptions"
 import styled from "styled-components"
 import GeoInput from "./GeoInput"
 import { NextSpan } from "../elements/NextSpan"
+import { Menu } from "../elements/Menu"
 
 const Panel = styled.div`
   display: flex;
@@ -20,32 +21,35 @@ const Geometry = ({ open, setOpen }) => {
   const { data, reordered, geometry, updateSelections } = useSelection()
 
   return (
-    <Controls
-      title='visualise'
-      position={open}
-      setPosition={() => setOpen("viz")}
-    >
-      <h4>Geometry</h4>
-      <Panel>
-        {Object.keys(visOptions).map((geo, i) => (
-          <GeoInput
-            key={`geo-${i}`}
-            geometry={geo}
-            updateSelections={updateSelections}
-          />
-        ))}
-      </Panel>
-      <h4>Options</h4>
-      <div>
-        <VisOptions
-          data={data}
-          reordered={reordered}
-          handleClick={updateSelections}
-          {...visOptions[geometry]}
-        />
+    <Menu>
+      <div className='title' onClick={() => setOpen("viz")}>
+        <h2>Visualisation</h2>
       </div>
-      <NextSpan onClick={() => setOpen("style")}>Style chart &#8594;</NextSpan>
-    </Controls>
+      <Controls open={open}>
+        <h4>Geometry</h4>
+        <Panel>
+          {Object.keys(visOptions).map((geo, i) => (
+            <GeoInput
+              key={`geo-${i}`}
+              geometry={geo}
+              updateSelections={updateSelections}
+            />
+          ))}
+        </Panel>
+        <h4>Options</h4>
+        <div>
+          <VisOptions
+            data={data}
+            reordered={reordered}
+            handleClick={updateSelections}
+            {...visOptions[geometry]}
+          />
+        </div>
+        <NextSpan onClick={() => setOpen("style")}>
+          Style chart &#8594;
+        </NextSpan>
+      </Controls>
+    </Menu>
   )
 }
 

@@ -69,7 +69,6 @@ h5 {font-size: 1.25rem;}
 
 small, .text_small {font-size: 0.8rem;}
 
-
   .visx-axis-label {
     fill: var(--color-paragraph);
     font-size: 12px;

@@ -48,12 +48,20 @@ const Form = ({ className }) => {
 }
 
 export default styled(Form)`
-  grid-area: form;
-  background: var(--color-foreground);
-  display: grid;
-  grid-template-columns: repeat(4, auto);
+  display: flex;
+  flex-direction: column;
+  align-content: stretch;
+  width: 30vw;
+  margin-left: 5px;
   ${elevation[1]};
+  padding: 1rem 0.5rem;
+  height: 85vh;
+  overflow: hidden;
+
+  background: var(--color-foreground);
+
   h2 {
     cursor: pointer;
+    margin: 10px 0px;
   }
 `

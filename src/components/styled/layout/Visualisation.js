@@ -23,38 +23,48 @@ const Visualisation = ({ className }) => {
 
   return (
     <div className={className}>
-      <input
-        type='text'
-        className='title'
-        value={title}
-        onChange={(e) => updateSelections({ title: e.target.value })}
-      />
-      <input
-        type='text'
-        className='subtitle'
-        value={subtitle}
-        onChange={(e) => updateSelections({ subtitle: e.target.value })}
-      />
-      {x && <div style={{ position: "relative" }}>{renderChart(geometry)}</div>}
+      <div>
+        <input
+          type='text'
+          className='title'
+          value={title}
+          onChange={(e) => updateSelections({ title: e.target.value })}
+        />
+        <input
+          type='text'
+          className='subtitle'
+          value={subtitle}
+          onChange={(e) => updateSelections({ subtitle: e.target.value })}
+        />
+      </div>
+      {x && (
+        <div className='viz' style={{ position: "relative", height: "90%" }}>
+          {renderChart(geometry)}
+        </div>
+      )}
     </div>
   )
 }
 
 export default styled(Visualisation)`
-  grid-area: visualisation;
-  display: grid;
-  grid-template-areas: "title" "subtitle" "visualisation";
-  grid-template-rows: 6vh 4vh 75vh;
-  width: 100%;
   padding: 1rem 0.5rem;
   background: var(--color-foreground);
   ${elevation[1]};
+  width: 65vw;
+  height: 85vh;
+  flex-direction: column;
+
+  @media only screen and (max-width: 600px) {
+    width: 100vw;
+    height: 80vh;
+  }
 
   input {
     border: none;
+    width: 80%;
     outline: none;
     margin: 3px 30px;
-    padding: 0px 0.5rem;
+    padding: 0.5rem 0.5rem;
     background: var(--color-input);
     color: var(--color-heading);
   }
