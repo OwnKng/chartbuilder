@@ -1,7 +1,6 @@
 import Controls from "../elements/Control"
 import { Button } from "../elements/Button"
 import { Select } from "../elements/Select"
-import { NextSpan } from "../elements/NextSpan"
 import { Table } from "../elements/Table"
 import { useType, useSelection } from "../../../hooks"
 import { Menu } from "../elements/Menu"
@@ -42,7 +41,6 @@ const Data = ({ open, setOpen, handleChange }) => {
             ))}
           </tbody>
         </Table>
-        <NextSpan onClick={() => setOpen("viz")}>Select chart &#8594;</NextSpan>
       </Controls>
     </Menu>
   )

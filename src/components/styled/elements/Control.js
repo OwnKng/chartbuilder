@@ -26,11 +26,6 @@ export default styled(Controls)`
   overflow-y: scroll;
   max-height: 400px;
 
-  h2 {
-    margin: 0px;
-    text-transform: uppercase;
-  }
-
   h4 {
     margin: 10px 0px;
   }
@@ -42,7 +37,7 @@ export default styled(Controls)`
   }
 
   .controls {
-    padding: 0 0.8rem;
+    margin: 0 1rem;
     display: flex;
     flex-direction: column;
     overflow: scroll;

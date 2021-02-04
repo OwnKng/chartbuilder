@@ -1,7 +1,6 @@
 import Controls from "../elements/Control"
 import { ButtonOptions } from "../elements/ButtonOptions"
 import { useSelection } from "../../../hooks"
-import { NextSpan } from "../elements/NextSpan"
 import { Menu } from "../elements/Menu"
 
 const Style = ({ open, setOpen }) => {
@@ -28,9 +27,6 @@ const Style = ({ open, setOpen }) => {
         <ButtonOptions onClick={() => updateSelections({ palette: "lancet" })}>
           Two
         </ButtonOptions>
-        <NextSpan onClick={() => setOpen("share")}>
-          Share your chart &#8594;
-        </NextSpan>
       </Controls>
     </Menu>
   )

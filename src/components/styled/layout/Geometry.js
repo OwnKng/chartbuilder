@@ -4,7 +4,6 @@ import { visOptions } from "../../visualisations/visOptions"
 import VisOptions from "./VisOptions"
 import styled from "styled-components"
 import GeoInput from "./GeoInput"
-import { NextSpan } from "../elements/NextSpan"
 import { Menu } from "../elements/Menu"
 
 const Panel = styled.div`
@@ -45,9 +44,6 @@ const Geometry = ({ open, setOpen }) => {
             {...visOptions[geometry]}
           />
         </div>
-        <NextSpan onClick={() => setOpen("style")}>
-          Style chart &#8594;
-        </NextSpan>
       </Controls>
     </Menu>
   )

@@ -23,7 +23,7 @@ const Visualisation = ({ className }) => {
 
   return (
     <div className={className}>
-      <div>
+      <div className='Input'>
         <input
           type='text'
           className='title'
@@ -47,26 +47,33 @@ const Visualisation = ({ className }) => {
 }
 
 export default styled(Visualisation)`
-  padding: 1rem 0.5rem;
   background: var(--color-foreground);
   ${elevation[1]};
   width: 65vw;
   height: 85vh;
   flex-direction: column;
 
-  @media only screen and (max-width: 600px) {
+  @media only screen and (max-width: 1024px) {
+    max-width: 1000px;
+    margin: 0px auto;
     width: 100vw;
-    height: 80vh;
+    height: 600px;
   }
 
   input {
+    display: block;
     border: none;
-    width: 80%;
     outline: none;
-    margin: 3px 30px;
+    width: calc(100% - 20px);
+    margin: 4px 0px;
     padding: 0.5rem 0.5rem;
     background: var(--color-input);
     color: var(--color-heading);
+  }
+
+  .Input {
+    padding-top: 10px;
+    margin: 0px 20px;
   }
 
   .title {

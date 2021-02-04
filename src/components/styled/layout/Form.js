@@ -54,14 +54,16 @@ export default styled(Form)`
   width: 30vw;
   margin-left: 5px;
   ${elevation[1]};
-  padding: 1rem 0.5rem;
   height: 85vh;
   overflow: hidden;
 
   background: var(--color-foreground);
 
-  h2 {
-    cursor: pointer;
-    margin: 10px 0px;
+  @media only screen and (max-width: 1024px) {
+    max-width: 1000px;
+    margin: 0px auto;
+    width: 100vw;
+    height: auto;
+    margin-top: 10px;
   }
 `

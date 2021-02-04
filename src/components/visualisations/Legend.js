@@ -10,10 +10,11 @@ const Legend = ({ scale, left }) => (
       position: "absolute",
       top: 10,
       left: left,
-      width: `100%`,
+      width: "80%",
+      maxHeight: "100%",
+      overflow: "hidden",
       display: "flex",
       fontSize: "12px",
-      overflowX: "scroll",
       flexWrap: "wrap",
       color: "var(--color-paragraph)",
     }}
