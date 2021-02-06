@@ -17,7 +17,7 @@ import { palettes } from "../styled/utilities"
 const BarChart = ({
   width,
   height,
-  margin = { top: 60, left: 60, right: 80, bottom: 80 },
+  margin = { top: 60, left: 60, right: 30, bottom: 80 },
 }) => {
   const { data, x, y, color, reordered, palette } = useSelection()
 

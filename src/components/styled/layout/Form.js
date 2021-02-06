@@ -51,7 +51,7 @@ export default styled(Form)`
   display: flex;
   flex-direction: column;
   align-content: stretch;
-  width: 30vw;
+  width: 28vw;
   margin-left: 5px;
   ${elevation[1]};
   height: 85vh;

@@ -22,7 +22,7 @@ const GETCHART = gql`
   }
 `
 
-const Shared = ({ className, match }) => {
+const ChartID = ({ className, match }) => {
   const id = match.url.substring(1)
   const { updateSelections } = useSelection()
 
@@ -47,7 +47,7 @@ const Shared = ({ className, match }) => {
   )
 }
 
-export default styled(Shared)`
+export default styled(ChartID)`
   width: 95vw;
   margin: 0px auto;
 `

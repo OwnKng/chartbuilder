@@ -49,7 +49,7 @@ const Visualisation = ({ className }) => {
 export default styled(Visualisation)`
   background: var(--color-foreground);
   ${elevation[1]};
-  width: 65vw;
+  width: 70vw;
   height: 85vh;
   flex-direction: column;
 

@@ -4,13 +4,17 @@ import { Select } from "../elements/Select"
 import { Table } from "../elements/Table"
 import { useType, useSelection } from "../../../hooks"
 import { Menu } from "../elements/Menu"
+import DataInput from "./DataInput"
+import { useState } from "react"
 
 const Data = ({ open, setOpen, handleChange }) => {
   const { data } = useSelection()
   const { types } = useType(data)
+  const [dataOpen, setDataOpen] = useState(false)
 
   return (
     <Menu>
+      {dataOpen && <DataInput toggle={() => setDataOpen(false)} />}
       <div className='title' onClick={() => setOpen("data")}>
         <h2>Data</h2>
       </div>
@@ -23,6 +27,9 @@ const Data = ({ open, setOpen, handleChange }) => {
             <option value='timeSeries2018'>World Bank Data</option>
           </Select>
         </div>
+        <Button onClick={() => setDataOpen((prevState) => !prevState)}>
+          Add new data
+        </Button>
         <Button>Filter</Button>
         <Table>
           <caption>Data types</caption>
