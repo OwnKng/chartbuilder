@@ -6,11 +6,15 @@ import { useType, useSelection } from "../../../hooks"
 import { Menu } from "../elements/Menu"
 import DataInput from "./DataInput"
 import { useState } from "react"
+import { useQuery } from "@apollo/client"
+import { GET_DATASETS } from "../../graphql/query"
 
 const Data = ({ open, setOpen, handleChange }) => {
   const { data } = useSelection()
   const { types } = useType(data)
   const [dataOpen, setDataOpen] = useState(false)
+
+  const { data: meta, loading } = useQuery(GET_DATASETS)
 
   return (
     <Menu>
@@ -19,35 +23,42 @@ const Data = ({ open, setOpen, handleChange }) => {
         <h2>Data</h2>
       </div>
       <Controls open={open}>
-        <h4>Select data</h4>
-        <div>
-          <Select onChange={(e) => handleChange(e.target.value)}>
-            <option value='economicData'>OECD data</option>
-            <option value='timeSeries'>Time series</option>
-            <option value='timeSeries2018'>World Bank Data</option>
-          </Select>
-        </div>
-        <Button onClick={() => setDataOpen((prevState) => !prevState)}>
-          Add new data
-        </Button>
-        <Button>Filter</Button>
-        <Table>
-          <caption>Data types</caption>
-          <thead>
-            <tr>
-              <th>Column</th>
-              <th>Type</th>
-            </tr>
-          </thead>
-          <tbody>
-            {types.map((d, i) => (
-              <tr key={`${d.variable}${i}`}>
-                <td>{d.variable}</td>
-                <td>{d.type}</td>
-              </tr>
-            ))}
-          </tbody>
-        </Table>
+        {loading ? (
+          <p>Loading data</p>
+        ) : (
+          <>
+            <h4>Select data</h4>
+            <div>
+              <Select onChange={(e) => handleChange(e.target.value)}>
+                {meta.getDatasets.map((d) => (
+                  <option value={d._id} key={d._id}>
+                    {d.name}
+                  </option>
+                ))}
+              </Select>
+            </div>
+            <Button onClick={() => setDataOpen((prevState) => !prevState)}>
+              Add new data
+            </Button>
+            <Table>
+              <caption>Data types</caption>
+              <thead>
+                <tr>
+                  <th>Column</th>
+                  <th>Type</th>
+                </tr>
+              </thead>
+              <tbody>
+                {types.map((d, i) => (
+                  <tr key={`${d.variable}${i}`}>
+                    <td>{d.variable}</td>
+                    <td>{d.type}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </Table>
+          </>
+        )}
       </Controls>
     </Menu>
   )

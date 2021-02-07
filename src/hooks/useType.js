@@ -6,7 +6,7 @@ export const useType = (data) => {
   const types = keys.map((key) => {
     const isNumeric = data
       .map((d) => d[key])
-      .filter((d) => d !== undefined)
+      .filter((d) => d !== undefined || d !== null)
       .every((d) => typeof d === "number")
 
     return {

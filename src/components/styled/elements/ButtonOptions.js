@@ -4,9 +4,9 @@ export const ButtonOptions = styled.button`
   display: block;
   width: 100%;
   text-align: left;
-  padding: 0.5rem;
+  padding: 5px;
   text-transform: capitalize;
-  background: var(--color-input);
+  background: var(--color-userInput);
   color: var(--color-paragraph);
   border: none;
   margin: 2px 1px;

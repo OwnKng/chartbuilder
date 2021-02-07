@@ -5,7 +5,6 @@ const Controls = ({ open, className, children }) => {
   const variants = {
     open: { height: "400px" },
     closed: { height: "0px" },
-    transition: "ease",
   }
   return (
     <div className={className}>
@@ -13,7 +12,9 @@ const Controls = ({ open, className, children }) => {
         variants={variants}
         animate={open ? "open" : "closed"}
         initial={false}
-        transition='ease'
+        transition={{
+          duration: 0.25,
+        }}
         className='wrapper'
       >
         <div className='controls'>{children}</div>

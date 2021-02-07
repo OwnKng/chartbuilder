@@ -67,7 +67,7 @@ export default styled(Visualisation)`
     width: calc(100% - 20px);
     margin: 4px 0px;
     padding: 0.5rem 0.5rem;
-    background: var(--color-input);
+    background: var(--color-userInput);
     color: var(--color-heading);
   }
 

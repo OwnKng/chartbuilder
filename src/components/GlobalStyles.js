@@ -13,16 +13,17 @@ ${normalize}
     --color-heading: ${({ theme }) => theme.heading};
     --color-boxshadow: ${({ theme }) => theme.boxshadow};
     --color-accent: ${({ theme }) => theme.accent};
+    --color-accentTwo: ${({ theme }) => theme.accentTwo};
     --color-button: ${({ theme }) => theme.button};
     --color-button-hover: ${({ theme }) => theme.hover};
+    --color-userInput: ${({ theme }) => theme.userInput};
   }
   
 @import url('https://fonts.googleapis.com/css?family=Saira:400|Archivo+Black:400');
 
-html {font-size: 80%;} /*16px*/
+html {font-size: 80;} /*16px*/
 
 body {
-  background: white;
   font-family: 'Saira', sans-serif;
   font-weight: 400;
   line-height: 1.75;
@@ -34,7 +35,6 @@ body {
 
 p {
   color: var(--color-paragraph);
-  margin: 0px;
 }
 
 span {
@@ -57,11 +57,11 @@ h1 {
   font-weight: 800;
 }
 
-h2 {font-size: 2rem;}
+h2 {font-size: 1.8rem;}
 
-h3 {font-size: 1.953rem;}
+h3 {font-size: 1.6rem;}
 
-h4 {font-size: 1.563rem;
+h4 {font-size: 1.4rem;
   margin: 0px;
   text-transform: uppercase;}
 

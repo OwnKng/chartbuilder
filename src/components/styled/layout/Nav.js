@@ -1,21 +1,27 @@
 import styled from "styled-components"
 import { useQuery } from "@apollo/client"
-import { IS_LOGGED_IN } from "../../graphql/query"
+import { IS_LOGGED_IN, GET_USER } from "../../graphql"
 import { useHistory } from "react-router-dom"
 
 const Nav = ({ className, openSignUp = (f) => f, openSignIn = (f) => f }) => {
   const { data, client } = useQuery(IS_LOGGED_IN)
+  const { data: user } = useQuery(GET_USER)
   let history = useHistory()
 
   return (
     <div className={className}>
       <nav>
         <ul>
-          <li>
-            <a href='/'>Chart Feed</a>
-          </li>
+          {data.isLoggedIn && user && (
+            <li>
+              <p>Welcome back, {user.user.username}</p>
+            </li>
+          )}
           {data.isLoggedIn ? (
             <>
+              <li>
+                <a href='/'>Chart Feed</a>
+              </li>
               <li>
                 <button
                   onClick={() => {
@@ -48,10 +54,6 @@ const Nav = ({ className, openSignUp = (f) => f, openSignIn = (f) => f }) => {
   )
 }
 
-/* 
-
-*/
-
 export default styled(Nav)`
   color: var(--color-paragraph);
 
@@ -61,7 +63,34 @@ export default styled(Nav)`
 
   li {
     list-style-type: none;
-    font-weight: bold;
-    padding: 0 0.5rem;
+
+    padding: 0 10px;
+  }
+
+  p {
+    color: var(--color-heading);
+    margin: 0px;
+  }
+
+  a {
+    text-decoration: none;
+    font-weight: normal;
+    color: var(--color-heading);
+    :hover {
+      color: var(--color-button);
+    }
+  }
+
+  button {
+    border: none;
+    background: none;
+    color: var(--color-heading);
+    cursor: pointer;
+    :focus {
+      outline: none;
+    }
+    :hover {
+      color: var(--color-button);
+    }
   }
 `

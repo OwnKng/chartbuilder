@@ -1,67 +1,119 @@
 import styled from "styled-components"
 import { Button } from "../elements/Button"
+import { useMutation } from "@apollo/client"
+import { CREATEDATASET, GET_DATASETS } from "../../graphql"
+import { useState } from "react"
+import Modal from "../elements/Modal"
+import { CloseButton } from "../elements/CloseButton"
 
 const DataInput = ({ className, toggle = (f) => f }) => {
+  const [validJSON, setValid] = useState()
+  const [data, setData] = useState({
+    data: "",
+    name: "",
+  })
+
+  const [createDataset, { error }] = useMutation(CREATEDATASET, {
+    onCompleted: (data) => {
+      toggle()
+    },
+    update(cache, { data: { createDataset } }) {
+      const { getDatasets } = cache.readQuery({ query: GET_DATASETS })
+      cache.writeQuery({
+        query: GET_DATASETS,
+        data: { getDatasets: getDatasets.concat([createDataset]) },
+      })
+    },
+  })
+
+  const handleJSON = (event) => {
+    let obj
+    try {
+      obj = JSON.parse(event.target.value)
+      setData({
+        ...data,
+        data: JSON.stringify(obj, undefined, 4),
+      })
+      setValid(true)
+    } catch (err) {
+      setData({
+        ...data,
+        data: event.target.value,
+      })
+      setValid(false)
+    }
+  }
+
   return (
-    <div className={className}>
-      <form>
-        <h4>Add data</h4>
-        <div>
-          <label className='textLabel' htmlFor='dataInput'>
-            Paste data
-          </label>
-          <textarea id='dataInput' />
-        </div>
-        <div>
-          <label className='textLabel' htmlFor='dataName'>
-            Name of dataset
-          </label>
-          <input id='dataName' />
-        </div>
-        <div>
-          <p>Make data available to</p>
-          <input type='radio' id='user' name='available' />
-          <label for='user'>Only me</label>
-          <input type='radio' id='allUsers' name='available' />
-          <label for='allUsers'>All users</label>
-        </div>
-        <Button
-          onClick={() => {
-            toggle()
+    <Modal>
+      <CloseButton onClick={() => toggle()}>X</CloseButton>
+      <div className={className}>
+        <form
+          onSubmit={(event) => {
+            event.preventDefault()
+            if (validJSON) {
+              createDataset({
+                variables: {
+                  ...data,
+                },
+              })
+            }
           }}
         >
-          Add new data
-        </Button>
-      </form>
-    </div>
+          <h4>Add data</h4>
+          <div>
+            <label className='textLabel' htmlFor='dataName'>
+              Name of dataset
+            </label>
+            <input
+              className='nameInput'
+              id='dataName'
+              name='name'
+              onChange={(event) =>
+                setData({ ...data, name: event.target.value })
+              }
+            />
+          </div>
+          <div>
+            <label className='textLabel' htmlFor='dataInput'>
+              Paste data
+            </label>
+            <textarea
+              id='dataInput'
+              name='data'
+              value={data.data}
+              onChange={handleJSON}
+            />
+            {validJSON === false ? (
+              <p>Please enter valid JSON data</p>
+            ) : (
+              <p></p>
+            )}
+          </div>
+          <Button type='submit'>Add new data</Button>
+        </form>
+      </div>
+    </Modal>
   )
 }
 
 export default styled(DataInput)`
-  position: absolute;
-  width: 100vw;
-  height: 100vh;
-  top: 0px;
-  left: 0px;
-  background: rgba(2, 10, 18, 0.4);
-  backdrop-filter: blur(2px);
-
   form {
-    position: relative;
     padding: 2rem;
-    top: 25%;
-    left: 25%;
-    width: 50vw;
     color: var(--color-paragraph);
     display: flex;
     flex-direction: column;
     justify-items: space-around;
-    background: var(--color-foreground);
+  }
+
+  .nameInput {
+    width: 100%;
+    padding: 0.5rem 0;
   }
 
   textarea {
     width: 100%;
-    height: 60px;
+    height: 200px;
     resize: none;
   }
 

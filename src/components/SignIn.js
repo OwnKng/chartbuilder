@@ -1,12 +1,17 @@
 import styled from "styled-components"
 import { Button } from "./styled/elements/Button"
 import { useState } from "react"
-import { useMutation, useApolloClient, useQuery } from "@apollo/client"
+import { useMutation, useApolloClient } from "@apollo/client"
 import { IS_LOGGED_IN } from "./graphql/query"
 import { SIGNIN } from "./graphql/mutation"
+import Modal from "./styled/elements/Modal"
+import { CloseButton } from "./styled/elements/CloseButton"
+import { Input } from "./styled/elements/Input"
+import { useHistory } from "react-router-dom"
 
 const SignIn = ({ className, setOpen = (f) => f }) => {
   const [values, setValues] = useState()
+  let history = useHistory()
 
   const onChange = (event) => {
     setValues({
@@ -16,7 +21,6 @@ const SignIn = ({ className, setOpen = (f) => f }) => {
   }
 
   const client = useApolloClient()
-  const { data } = useQuery(IS_LOGGED_IN)
 
   const [signIn, { error }] = useMutation(SIGNIN, {
     onCompleted: (data) => {
@@ -27,14 +31,15 @@ const SignIn = ({ className, setOpen = (f) => f }) => {
           isLoggedIn: true,
         },
       })
-      setOpen()
+      history.push("/")
+      history.go()
     },
   })
 
   return (
-    <div className={className}>
-      <h4>Login</h4>
+    <Modal>
       <form
+        className={className}
         onSubmit={(event) => {
           event.preventDefault()
           signIn({
@@ -44,41 +49,37 @@ const SignIn = ({ className, setOpen = (f) => f }) => {
           })
         }}
       >
+        <h4>Sign in to graphix</h4>
+        <CloseButton onClick={setOpen}>X</CloseButton>
         <label htmlFor='email'>Email</label>
-        <input id='email' name='email' type='text' onChange={onChange} />
+        <Input id='email' name='email' type='text' onChange={onChange} />
         <label htmlFor='password'>Password</label>
-        <input
+        <Input
           id='password'
           name='password'
           type='password'
           onChange={onChange}
         />
         <div>
-          <Button type='submit'>SignIn</Button>
+          <Button type='submit'>Sign in</Button>
         </div>
         {error && <p>Invalid credentials</p>}
       </form>
-    </div>
+    </Modal>
   )
 }
 
 export default styled(SignIn)`
-  position: absolute;
-  top: 0px;
-  background: var(--color-foreground);
-  color: var(--color-paragraph);
-  margin: 0px auto;
-  padding: 2rem;
-  width: 80%;
-  max-width: 400px;
-  z-index: 1;
+  h4 {
+    padding-bottom: 2rem;
+    text-align: center;
+  }
 
   label {
     display: block;
+    color: var(--color-heading);
+    text-transform: uppercase;
   }
 
-  input {
-    padding: 0.5rem 0;
-    width: 90%;
-  }
+  margin-bottom: 30px;
 `

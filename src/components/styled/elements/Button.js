@@ -2,7 +2,7 @@ import styled from "styled-components"
 import { elevation } from "../utilities"
 
 export const Button = styled.button`
-  padding: 0.8rem 1rem;
+  padding: 10px 12px;
   border-radius: 6px;
   border: none;
   margin: 10px 0px;
