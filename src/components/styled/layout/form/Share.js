@@ -1,10 +1,10 @@
-import Controls from "../elements/Control"
+import Controls from "../../elements/Control"
 import { useMutation } from "@apollo/react-hooks"
 import gql from "graphql-tag"
-import { useSelection } from "../../../hooks"
-import { Button } from "../elements/Button"
+import { useSelection } from "../../../../hooks"
+import { Button } from "../../elements/Button"
 import ShareLink from "./ShareLink"
-import { Menu } from "../elements/Menu"
+import { Menu } from "../../elements/Menu"
 
 const SAVEGRAPH = gql`
   mutation CreateGraph(

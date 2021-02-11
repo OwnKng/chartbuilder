@@ -1,5 +1,5 @@
-import { useActive } from "../../../hooks"
-import { ButtonOptions } from "../elements/ButtonOptions"
+import { useActive } from "../../../../hooks"
+import { ButtonOptions } from "../../elements/ButtonOptions"
 
 const GeoInput = ({ geometry, updateSelections }) => {
   const { active } = useActive("geometry")

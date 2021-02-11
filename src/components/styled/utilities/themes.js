@@ -7,7 +7,7 @@ export const darkMode = {
   paragraph: "#a7a9be",
   heading: "#fffffe",
   boxshadow: "#2e2f3e",
-  accent: "#FF0A12",
+  accent: "#EF233C",
   accentTwo: "#eff0f3",
   button: "#5dfdcb",
   hover: "#2ABF90",

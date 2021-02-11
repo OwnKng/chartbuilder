@@ -1,9 +1,9 @@
 import styled from "styled-components"
-import { useSelection } from "../../../hooks"
-import Scatter from "../../visualisations/Scatter"
-import Bar from "../../visualisations/Bar"
-import Line from "../../visualisations/Line"
-import { elevation } from "../utilities/"
+import { useSelection } from "../../../../hooks"
+import Scatter from "../../../visualisations/Scatter"
+import Bar from "../../../visualisations/Bar"
+import Line from "../../../visualisations/Line"
+import { elevation } from "../../utilities"
 
 const Visualisation = ({ className }) => {
   const { x, geometry, title, subtitle, updateSelections } = useSelection()
@@ -38,7 +38,7 @@ const Visualisation = ({ className }) => {
         />
       </div>
       {x && (
-        <div className='viz' style={{ position: "relative", height: "90%" }}>
+        <div className='viz' style={{ position: "relative", height: "70vh" }}>
           {renderChart(geometry)}
         </div>
       )}
@@ -74,6 +74,7 @@ export default styled(Visualisation)`
   .Input {
     padding-top: 10px;
     margin: 0px 20px;
+    height: 15vh;
   }
 
   .title {

@@ -19,7 +19,7 @@ const modalVariants = {
   },
 }
 
-const Modal = ({ className, children }) => (
+const Modal = ({ className, children, maxWidth = 600 }) => (
   <motion.div
     variants={variants}
     initial='inital'
@@ -31,6 +31,9 @@ const Modal = ({ className, children }) => (
       variants={modalVariants}
       initial='initial'
       animate='animate'
+      style={{
+        maxWidth: maxWidth,
+      }}
     >
       {children}
     </motion.div>
@@ -55,7 +58,6 @@ export default styled(Modal)`
     color: var(--color-paragraph);
     padding: 20px;
     width: 95%;
-    max-width: 600px;
     min-width: 320px;
     z-index: 1;
     border-radius: 10px;

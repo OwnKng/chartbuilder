@@ -1,9 +1,9 @@
-import { useType } from "../../../hooks"
+import { useType } from "../../../../hooks"
 import AesInput from "./AesInput"
-import { ButtonOptions } from "../elements/ButtonOptions"
+import { ButtonOptions } from "../../elements/ButtonOptions"
 import styled from "styled-components"
-import { Panel } from "../elements/Panel"
-import { useActive } from "../../../hooks"
+import { Panel } from "../../elements/Panel"
+import { useActive } from "../../../../hooks"
 
 const VisOptions = ({
   className,

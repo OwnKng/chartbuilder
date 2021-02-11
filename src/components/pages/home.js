@@ -1,5 +1,5 @@
-import Form from "../styled/layout/Form"
-import Visualisation from "../styled/layout/Visualisation"
+import Form from "../styled/layout/form/Form"
+import Visualisation from "../styled/layout/visualisation/Visualisation"
 import styled from "styled-components"
 
 const Home = ({ className }) => (

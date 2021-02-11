@@ -1,18 +1,18 @@
 export const visOptions = {
   bar: {
-    x: ["character"],
+    x: ["string", "number"],
     y: ["number"],
-    color: ["character", "none"],
+    color: ["string", "none"],
     reorder: true,
   },
   point: {
     x: ["number"],
     y: ["number"],
-    color: ["character", "none"],
+    color: ["string", "none"],
   },
   line: {
     x: ["number"],
     y: ["number"],
-    color: ["character", "none"],
+    color: ["string", "none"],
   },
 }

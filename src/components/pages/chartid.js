@@ -1,4 +1,4 @@
-import Visualisation from "../styled/layout/Visualisation"
+import Visualisation from "../styled/layout/visualisation/Visualisation"
 import { useQuery } from "@apollo/react-hooks"
 import gql from "graphql-tag"
 import { useSelection } from "../../hooks"

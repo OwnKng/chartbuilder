@@ -1,10 +1,10 @@
-import { useSelection } from "../../../hooks"
-import Controls from "../elements/Control"
-import { visOptions } from "../../visualisations/visOptions"
+import { useSelection } from "../../../../hooks"
+import Controls from "../../elements/Control"
+import { visOptions } from "../../../visualisations/visOptions"
 import VisOptions from "./VisOptions"
 import styled from "styled-components"
 import GeoInput from "./GeoInput"
-import { Menu } from "../elements/Menu"
+import { Menu } from "../../elements/Menu"
 
 const Panel = styled.div`
   display: flex;

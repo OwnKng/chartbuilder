@@ -2,7 +2,7 @@ import styled from "styled-components"
 
 const Footer = ({ className }) => (
   <div className={className}>
-    <p>Created with love using React, Visx and Netlify</p>
+    <span>Created with love using React, Visx and Netlify</span>
   </div>
 )
 

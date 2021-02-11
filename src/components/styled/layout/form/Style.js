@@ -1,7 +1,7 @@
-import Controls from "../elements/Control"
-import { ButtonOptions } from "../elements/ButtonOptions"
-import { useSelection } from "../../../hooks"
-import { Menu } from "../elements/Menu"
+import Controls from "../../elements/Control"
+import { ButtonOptions } from "../../elements/ButtonOptions"
+import { useSelection } from "../../../../hooks"
+import { Menu } from "../../elements/Menu"
 
 const Style = ({ open, setOpen }) => {
   const { updateSelections } = useSelection()

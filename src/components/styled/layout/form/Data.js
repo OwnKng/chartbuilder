@@ -1,18 +1,19 @@
-import Controls from "../elements/Control"
-import { Button } from "../elements/Button"
-import { Select } from "../elements/Select"
-import { Table } from "../elements/Table"
-import { useType, useSelection } from "../../../hooks"
-import { Menu } from "../elements/Menu"
-import DataInput from "./DataInput"
+import Controls from "../../elements/Control"
+import { Button } from "../../elements/Button"
+import { Select } from "../../elements/Select"
+import { Table } from "../../elements/Table"
+import { useType, useSelection } from "../../../../hooks"
+import { Menu } from "../../elements/Menu"
+import DataInput from "./addData/DataInput"
 import { useState } from "react"
 import { useQuery } from "@apollo/client"
-import { GET_DATASETS } from "../../graphql/query"
+import { GET_DATASETS } from "../../../graphql/query"
 
 const Data = ({ open, setOpen, handleChange }) => {
   const { data } = useSelection()
   const { types } = useType(data)
   const [dataOpen, setDataOpen] = useState(false)
+  const [browserOpen, setBrowserOpen] = useState(false)
 
   const { data: meta, loading } = useQuery(GET_DATASETS)
 

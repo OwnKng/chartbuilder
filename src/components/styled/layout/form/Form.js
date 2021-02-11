@@ -1,13 +1,13 @@
 import { useState } from "react"
 import Geometry from "./Geometry"
 import Share from "./Share"
-import { useSelection } from "../../../hooks"
+import { useSelection } from "../../../../hooks"
 import styled from "styled-components"
 import Data from "./Data"
 import Style from "./Style"
-import { elevation } from "../utilities"
+import { elevation } from "../../utilities"
 import { useQuery } from "@apollo/client"
-import { GET_DATA } from "../../graphql/query"
+import { GET_DATA } from "../../../graphql/query"
 
 const Form = ({ className }) => {
   const { updateSelections } = useSelection()

@@ -1,5 +1,5 @@
-import { ButtonOptions } from "../elements/ButtonOptions"
-import { useActive } from "../../../hooks"
+import { ButtonOptions } from "../../elements/ButtonOptions"
+import { useActive } from "../../../../hooks"
 
 const AesInput = ({ name, types, accepted, handleClick }) => {
   const { active } = useActive(name)

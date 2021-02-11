@@ -19,9 +19,7 @@ ${normalize}
     --color-userInput: ${({ theme }) => theme.userInput};
   }
   
-@import url('https://fonts.googleapis.com/css?family=Saira:400|Archivo+Black:400');
-
-html {font-size: 80;} /*16px*/
+html {font-size: 16px} /*16px*/
 
 body {
   font-family: 'Saira', sans-serif;
@@ -44,7 +42,7 @@ span {
 h1, h2, h3, h4, h5 {
   color: var(--color-heading);
   margin: 3rem 0 1.38rem;
-  font-family: 'Archivo Black', sans-serif;
+  font-family: 'Saira', sans-serif;
   font-weight: 400;
   line-height: 1.3;
 }
