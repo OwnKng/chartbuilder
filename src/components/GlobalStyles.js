@@ -19,7 +19,13 @@ ${normalize}
     --color-userInput: ${({ theme }) => theme.userInput};
   }
   
-html {font-size: 16px} /*16px*/
+html {font-size: 100%} /*16px*/
+
+@media screen and (max-width: 600px) {
+  html {
+      font-size: 70%;
+  }
+}
 
 body {
   font-family: 'Saira', sans-serif;
@@ -48,22 +54,15 @@ h1, h2, h3, h4, h5 {
 }
 
 h1 {
-  font-size: 3.052rem;
   text-transform: uppercase;
   padding: 0px;
   margin: 0px;
   font-weight: 800;
 }
 
-h2 {font-size: 1.8rem;}
-
-h3 {font-size: 1.6rem;}
-
-h4 {font-size: 1.4rem;
-  margin: 0px;
+h4 {margin: 0px;
   text-transform: uppercase;}
 
-h5 {font-size: 1.25rem;}
 
 small, .text_small {font-size: 0.8rem;}
 
