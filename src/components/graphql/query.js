@@ -32,3 +32,31 @@ export const GET_USER = gql`
     }
   }
 `
+
+export const GET_GRAPHICS = gql`
+  query GetGraphs {
+    getCharts {
+      _id
+      title
+      geometry
+    }
+  }
+`
+
+export const GETCHART = gql`
+  query GetChart($id: ID!) {
+    selection(id: $id) {
+      _id
+      data
+      geometry
+      x
+      y
+      geometry
+      color
+      reordered
+      title
+      theme
+      subtitle
+    }
+  }
+`

@@ -7,15 +7,17 @@ import { Menu } from "../../elements/Menu"
 import DataInput from "./addData/DataInput"
 import { useState } from "react"
 import { useQuery } from "@apollo/client"
-import { GET_DATASETS } from "../../../graphql/query"
+import { GET_DATASETS, IS_LOGGED_IN } from "../../../graphql/query"
+import { motion } from "framer-motion"
 
 const Data = ({ open, setOpen, handleChange }) => {
   const { data } = useSelection()
   const { types } = useType(data)
   const [dataOpen, setDataOpen] = useState(false)
-  const [browserOpen, setBrowserOpen] = useState(false)
+  const [prompt, setPrompt] = useState(false)
 
   const { data: meta, loading } = useQuery(GET_DATASETS)
+  const { data: signedIn } = useQuery(IS_LOGGED_IN)
 
   return (
     <Menu>
@@ -38,9 +40,31 @@ const Data = ({ open, setOpen, handleChange }) => {
                 ))}
               </Select>
             </div>
-            <Button onClick={() => setDataOpen((prevState) => !prevState)}>
+            <Button
+              onClick={() => {
+                signedIn.isLoggedIn
+                  ? setDataOpen((prevState) => !prevState)
+                  : setPrompt(true)
+              }}
+            >
               Add new data
             </Button>
+            {prompt && (
+              <motion.span
+                style={{
+                  textAlign: "center",
+                  margin: 0,
+                }}
+                initial={{
+                  height: 0,
+                }}
+                animate={{
+                  height: "auto",
+                }}
+              >
+                You must be signed in to add a dataset
+              </motion.span>
+            )}
             <Table>
               <caption>Data types</caption>
               <thead>

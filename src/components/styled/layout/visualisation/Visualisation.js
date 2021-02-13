@@ -51,7 +51,6 @@ export default styled(Visualisation)`
   ${elevation[1]};
   width: 70vw;
   height: 85vh;
-  flex-direction: column;
 
   @media only screen and (max-width: 1024px) {
     max-width: 1000px;

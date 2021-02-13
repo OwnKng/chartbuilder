@@ -2,6 +2,7 @@ import styled from "styled-components"
 import { useQuery } from "@apollo/client"
 import { IS_LOGGED_IN, GET_USER } from "../../graphql"
 import { useHistory } from "react-router-dom"
+import { Link } from "react-router-dom"
 
 const Nav = ({ className, openSignUp = (f) => f, openSignIn = (f) => f }) => {
   const { data, client } = useQuery(IS_LOGGED_IN)
@@ -13,14 +14,16 @@ const Nav = ({ className, openSignUp = (f) => f, openSignIn = (f) => f }) => {
       <nav>
         <ul>
           {data.isLoggedIn && user && (
-            <li>
+            <li className='greeting'>
               <p>Welcome back, {user.user.username}</p>
             </li>
           )}
           {data.isLoggedIn ? (
             <>
               <li>
-                <a href='/'>Chart Feed</a>
+                <div>
+                  <Link to='/feed'>Chart Feed</Link>
+                </div>
               </li>
               <li>
                 <button
@@ -57,13 +60,18 @@ const Nav = ({ className, openSignUp = (f) => f, openSignIn = (f) => f }) => {
 export default styled(Nav)`
   color: var(--color-paragraph);
 
+  @media only screen and (max-width: 600px) {
+    .greeting {
+      display: none;
+    }
+  }
+
   ul {
     display: flex;
   }
 
   li {
     list-style-type: none;
-
     padding: 0 10px;
   }
 
@@ -76,21 +84,61 @@ export default styled(Nav)`
     text-decoration: none;
     font-weight: normal;
     color: var(--color-heading);
+    position: relative;
+
+    :before {
+      content: "";
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background-color: var(--color-button);
+      visibility: hidden;
+      transition: all 0.2s ease-in-out;
+    }
+
+    :hover:before {
+      visibility: visible;
+      width: 100%;
+    }
+
     :hover {
       color: var(--color-button);
+      background-size: 100% 88%;
     }
   }
 
   button {
     border: none;
     background: none;
+    position: relative;
     color: var(--color-heading);
     cursor: pointer;
+    padding: 2px 0px;
+
     :focus {
       outline: none;
     }
     :hover {
       color: var(--color-button);
+    }
+
+    :before {
+      content: "";
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background-color: var(--color-button);
+      visibility: hidden;
+      transition: all 0.2s ease-in-out;
+    }
+
+    :hover:before {
+      visibility: visible;
+      width: 100%;
     }
   }
 `

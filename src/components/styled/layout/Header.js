@@ -1,11 +1,14 @@
 import styled from "styled-components"
 import { elevation } from "../utilities"
 import Nav from "./Nav"
+import { Link } from "react-router-dom"
 
 const Header = ({ className, openSignUp, openSignIn }) => (
   <div className={className}>
     <div>
-      <h1>graphix</h1>
+      <Link to='/'>
+        <h1>graphix</h1>
+      </Link>
     </div>
     <Nav openSignUp={openSignUp} openSignIn={openSignIn} />
   </div>
@@ -21,4 +24,8 @@ export default styled(Header)`
   ${elevation[1]};
   min-height: 8vh;
   margin-bottom: 10px;
+
+  a {
+    text-decoration: none;
+  }
 `

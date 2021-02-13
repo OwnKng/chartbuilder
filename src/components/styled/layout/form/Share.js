@@ -1,46 +1,35 @@
 import Controls from "../../elements/Control"
 import { useMutation } from "@apollo/react-hooks"
-import gql from "graphql-tag"
 import { useSelection } from "../../../../hooks"
 import { Button } from "../../elements/Button"
 import ShareLink from "./ShareLink"
 import { Menu } from "../../elements/Menu"
-
-const SAVEGRAPH = gql`
-  mutation CreateGraph(
-    $data: String!
-    $x: String!
-    $y: String!
-    $geometry: String!
-    $color: String
-    $reordered: Boolean
-    $title: String
-    $subtitle: String
-    $theme: String!
-    $palette: String!
-  ) {
-    createGraph(
-      input: {
-        data: $data
-        x: $x
-        y: $y
-        geometry: $geometry
-        color: $color
-        reordered: $reordered
-        title: $title
-        subtitle: $subtitle
-        theme: $theme
-        palette: $palette
-      }
-    ) {
-      _id
-    }
-  }
-`
+import { SAVEGRAPH, GET_GRAPHICS } from "../../../graphql"
 
 const ChartShare = ({ open, setOpen }) => {
-  const [saveGraph, { data, error }] = useMutation(SAVEGRAPH)
   const { selections } = useSelection()
+
+  const [createGraph, { data, error }] = useMutation(SAVEGRAPH, {
+    errorPolicy: "all",
+    update(cache, { data: { createGraph } }) {
+      try {
+        const { getCharts } = cache.readQuery({ query: GET_GRAPHICS })
+        cache.writeQuery({
+          query: GET_GRAPHICS,
+          data: {
+            getCharts: getCharts.concat([createGraph]),
+          },
+        })
+      } catch {
+        cache.writeQuery({
+          query: GET_GRAPHICS,
+          data: {
+            getCharts: [createGraph],
+          },
+        })
+      }
+    },
+  })
 
   return (
     <Menu>
@@ -51,7 +40,7 @@ const ChartShare = ({ open, setOpen }) => {
         <h4>Share chart</h4>
         <Button
           onClick={() =>
-            saveGraph({
+            createGraph({
               variables: {
                 ...selections,
                 data: JSON.stringify(selections.data),
@@ -61,7 +50,10 @@ const ChartShare = ({ open, setOpen }) => {
         >
           Generate Share Link
         </Button>
-        {error && <p>An error occured</p>}
+        {error &&
+          error.graphQLErrors.map(({ message }) => (
+            <p style={{ textAlign: "center" }}>{message}</p>
+          ))}
         {data && <ShareLink id={data.createGraph._id} />}
       </Controls>
     </Menu>

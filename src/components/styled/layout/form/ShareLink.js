@@ -14,8 +14,8 @@ const ShareLink = ({ className, id }) => {
   return (
     <div className={className}>
       <h5>Sharing link created!</h5>
-      <Link ref={linkRef} to={`/${id}`}>
-        http://localhost:3000/{id}
+      <Link ref={linkRef} to={`/chart${id}`}>
+        http://localhost:3000/chart{id}
       </Link>
       <button style={{ display: "block" }} onClick={() => copyToClipboard()}>
         Copy to clipboard
