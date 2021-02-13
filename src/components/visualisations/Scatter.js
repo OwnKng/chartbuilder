@@ -10,6 +10,7 @@ import AxisBottom from "./AxisBottom"
 import { scaleLinear } from "@visx/scale"
 import { extent } from "d3"
 import { palettes } from "../styled/utilities"
+import Legend from "./Legend"
 
 const Chart = ({
   width,
@@ -68,23 +69,7 @@ const Chart = ({
           ))}
       </svg>
       {color !== "none" ? (
-        <LegendOrdinal
-          scale={colorScale}
-          direction='row'
-          shape='circle'
-          labelMargin='0 30px 0 0'
-          style={{
-            position: "absolute",
-            top: 10,
-            left: margin.left,
-            width: `100%`,
-            display: "flex",
-            fontSize: "12px",
-            overflowX: "scroll",
-            flexWrap: "wrap",
-            color: "var(--color-paragraph)",
-          }}
-        />
+        <Legend left={margin.left} scale={colorScale} />
       ) : null}
     </>
   )

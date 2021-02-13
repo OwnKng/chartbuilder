@@ -55,8 +55,7 @@ export default styled(Visualisation)`
   @media only screen and (max-width: 1024px) {
     max-width: 1000px;
     margin: 0px auto;
-    width: 100vw;
-    height: 600px;
+    width: 95vw;
   }
 
   input {

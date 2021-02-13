@@ -19,8 +19,6 @@ const Data = ({ open, setOpen, handleChange }) => {
   const { data: meta, loading } = useQuery(GET_DATASETS)
   const { data: signedIn } = useQuery(IS_LOGGED_IN)
 
-  if (loading) return <p>Loading</p>
-
   return (
     <Menu>
       {dataOpen && <DataInput toggle={() => setDataOpen(false)} />}
