@@ -37,8 +37,7 @@ export default styled(Form)`
   display: flex;
   flex-direction: column;
   align-content: stretch;
-  width: 28vw;
-  margin-left: 5px;
+  min-width: 300px;
   ${elevation[1]};
   height: 85vh;
   overflow: hidden;
@@ -46,10 +45,6 @@ export default styled(Form)`
   background: var(--color-foreground);
 
   @media only screen and (max-width: 1024px) {
-    max-width: 1000px;
-    margin: 0px auto;
-    width: 100vw;
     height: auto;
-    margin-top: 10px;
   }
 `

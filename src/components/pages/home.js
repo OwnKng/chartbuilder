@@ -4,16 +4,34 @@ import styled from "styled-components"
 
 const Home = ({ className }) => (
   <div className={className}>
-    <Visualisation />
-    <Form />
+    <Visualisation className='viz' />
+    <Form className='form' />
   </div>
 )
 
 export default styled(Home)`
-  display: flex;
+  display: grid;
+  width: calc(100vw - 10px);
+  margin: 0px auto;
+  grid-template-areas: "viz form";
+  grid-template-columns: 2fr 1fr;
+
+  .viz {
+    grid-area: viz;
+  }
+
+  .form {
+    grid-area: form;
+  }
+
+  grid-gap: 5px;
+
   justify-content: center;
 
   @media only screen and (max-width: 1024px) {
-    display: block;
+    max-width: 1000px;
+    margin: 0px auto;
+    grid-template-areas: "viz" "form";
+    grid-template-columns: 1fr;
   }
 `

@@ -2,6 +2,7 @@ import Controls from "../../elements/Control"
 import { ButtonOptions } from "../../elements/ButtonOptions"
 import { useSelection } from "../../../../hooks"
 import { Menu } from "../../elements/Menu"
+import { Heading } from "../../elements/Heading"
 
 const Style = ({ open, setOpen }) => {
   const { updateSelections } = useSelection()
@@ -9,7 +10,7 @@ const Style = ({ open, setOpen }) => {
   return (
     <Menu>
       <div className='title' onClick={() => setOpen("style")}>
-        <h2>Style</h2>
+        <Heading>Style</Heading>
       </div>
       <Controls open={open}>
         <h4>Style chart</h4>

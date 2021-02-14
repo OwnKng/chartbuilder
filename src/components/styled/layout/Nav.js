@@ -22,7 +22,7 @@ const Nav = ({ className, openSignUp = (f) => f, openSignIn = (f) => f }) => {
             <>
               <li>
                 <div>
-                  <Link to='/feed'>Chart Feed</Link>
+                  <Link to='/feed'>My Graphs</Link>
                 </div>
               </li>
               <li>

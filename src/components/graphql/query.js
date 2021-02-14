@@ -21,6 +21,7 @@ export const GET_DATASETS = gql`
     getDatasets {
       name
       _id
+      public
     }
   }
 `

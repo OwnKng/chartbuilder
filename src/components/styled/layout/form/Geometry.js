@@ -5,6 +5,7 @@ import VisOptions from "./VisOptions"
 import styled from "styled-components"
 import GeoInput from "./GeoInput"
 import { Menu } from "../../elements/Menu"
+import { Heading } from "../../elements/Heading"
 
 const Panel = styled.div`
   display: flex;
@@ -22,7 +23,7 @@ const Geometry = ({ open, setOpen }) => {
   return (
     <Menu>
       <div className='title' onClick={() => setOpen("viz")}>
-        <h2>Visualisation</h2>
+        <Heading>Visualisation</Heading>
       </div>
       <Controls open={open}>
         <h4>Geometry</h4>

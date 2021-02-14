@@ -57,8 +57,8 @@ export default styled(Modal)`
     background: var(--color-foreground);
     color: var(--color-paragraph);
     padding: 20px;
-    width: 95%;
-    min-width: 320px;
+    width: 80%;
+    min-width: 240px;
     z-index: 1;
     border-radius: 10px;
     background: var(--color-background);

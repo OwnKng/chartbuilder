@@ -23,7 +23,7 @@ html {font-size: 100%} /*16px*/
 
 @media screen and (max-width: 600px) {
   html {
-      font-size: 70%;
+      font-size: 80%;
   }
 }
 

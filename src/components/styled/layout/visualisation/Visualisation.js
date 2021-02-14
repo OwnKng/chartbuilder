@@ -37,11 +37,7 @@ const Visualisation = ({ className }) => {
           onChange={(e) => updateSelections({ subtitle: e.target.value })}
         />
       </div>
-      {x && (
-        <div className='viz' style={{ position: "relative", height: "70vh" }}>
-          {renderChart(geometry)}
-        </div>
-      )}
+      {x && <div className='viz'>{renderChart(geometry)}</div>}
     </div>
   )
 }
@@ -49,13 +45,16 @@ const Visualisation = ({ className }) => {
 export default styled(Visualisation)`
   background: var(--color-foreground);
   ${elevation[1]};
-  width: 70vw;
+  width: 100%;
   height: 85vh;
 
-  @media only screen and (max-width: 1024px) {
-    max-width: 1000px;
-    margin: 0px auto;
-    width: 100vw;
+  .viz {
+    position: relative;
+    height: 70vh;
+
+    @media only screen and (max-width: 1024) {
+      height: 550px;
+    }
   }
 
   input {

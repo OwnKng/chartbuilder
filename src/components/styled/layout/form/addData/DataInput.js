@@ -7,14 +7,17 @@ import Modal from "../../../elements/Modal"
 import { CloseButton } from "../../../elements/CloseButton"
 import Papa from "papaparse"
 import DataTable from "./DataTable"
+import { motion } from "framer-motion"
+import StyledLink from "../../../elements/StyledLink"
 
 const DataInput = ({ className, toggle = (f) => f }) => {
   const [data, setData] = useState(false)
   const [title, setTitle] = useState()
 
   const [createDataset, { error }] = useMutation(CREATEDATASET, {
+    errorPolicy: "all",
     onCompleted: (data) => {
-      toggle()
+      if (data) toggle()
     },
     update(cache, { data: { createDataset } }) {
       const { getDatasets } = cache.readQuery({ query: GET_DATASETS })
@@ -45,7 +48,19 @@ const DataInput = ({ className, toggle = (f) => f }) => {
         <h4>Add data</h4>
         <div className='flex'>
           <div className='input'>
-            <form>
+            <form
+              onSubmit={(e) => {
+                e.preventDefault()
+                if (data && title) {
+                  createDataset({
+                    variables: {
+                      data: JSON.stringify(data),
+                      name: title,
+                    },
+                  })
+                }
+              }}
+            >
               <label className='textLabel' htmlFor='dataName'>
                 Name of dataset
               </label>
@@ -60,6 +75,7 @@ const DataInput = ({ className, toggle = (f) => f }) => {
                 Paste csv data here
               </label>
               <textarea id='dataInput' name='data' onChange={handleCSV} />
+              <Button type='submit'>Add new data</Button>
             </form>
           </div>
           <div className='preview'>
@@ -67,21 +83,22 @@ const DataInput = ({ className, toggle = (f) => f }) => {
             {data ? <DataTable data={data} /> : <span>Awaiting Valid CSV</span>}
           </div>
         </div>
-        <Button
-          type='submit'
-          onClick={() => {
-            if (data && title) {
-              createDataset({
-                variables: {
-                  data: JSON.stringify(data),
-                  name: title,
-                },
-              })
-            }
-          }}
-        >
-          Add new data
-        </Button>
+        <div style={{ height: 40 }}>
+          {error && (
+            <>
+              {error.graphQLErrors.map(({ message }) => (
+                <motion.span
+                  style={{ textAlign: "center", margin: 0 }}
+                  initial={{ y: -10 }}
+                  animate={{ y: 0 }}
+                >
+                  {message}
+                </motion.span>
+              ))}
+              <StyledLink to='/feed'>Manage your datasets</StyledLink>
+            </>
+          )}
+        </div>
       </div>
     </Modal>
   )

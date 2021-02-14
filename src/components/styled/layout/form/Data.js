@@ -9,6 +9,7 @@ import { useState } from "react"
 import { useQuery } from "@apollo/client"
 import { GET_DATASETS, IS_LOGGED_IN } from "../../../graphql/query"
 import { motion } from "framer-motion"
+import { Heading } from "../../elements/Heading"
 
 const Data = ({ open, setOpen, handleChange }) => {
   const { data } = useSelection()
@@ -23,7 +24,7 @@ const Data = ({ open, setOpen, handleChange }) => {
     <Menu>
       {dataOpen && <DataInput toggle={() => setDataOpen(false)} />}
       <div className='title' onClick={() => setOpen("data")}>
-        <h2>Data</h2>
+        <Heading>Data</Heading>
       </div>
       <Controls open={open}>
         {loading ? (
@@ -53,13 +54,13 @@ const Data = ({ open, setOpen, handleChange }) => {
               <motion.span
                 style={{
                   textAlign: "center",
-                  margin: 0,
+                  margin: "10px 0px",
                 }}
                 initial={{
-                  height: 0,
+                  y: -10,
                 }}
                 animate={{
-                  height: "auto",
+                  y: 0,
                 }}
               >
                 You must be signed in to add a dataset

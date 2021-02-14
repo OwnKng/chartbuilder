@@ -22,17 +22,19 @@ const ChartDataSets = ({ className }) => {
         data.getDatasets.map((d) => (
           <div className='dataRow' key={`dataset-${d._id}`}>
             <p>{d.name}</p>
-            <button
-              onClick={() => {
-                deleteDataset({
-                  variables: {
-                    id: d._id,
-                  },
-                })
-              }}
-            >
-              Delete
-            </button>
+            {!d.public && (
+              <button
+                onClick={() => {
+                  deleteDataset({
+                    variables: {
+                      id: d._id,
+                    },
+                  })
+                }}
+              >
+                Delete
+              </button>
+            )}
           </div>
         ))
       ) : (

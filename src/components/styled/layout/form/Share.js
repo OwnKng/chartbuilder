@@ -5,6 +5,8 @@ import { Button } from "../../elements/Button"
 import ShareLink from "./ShareLink"
 import { Menu } from "../../elements/Menu"
 import { SAVEGRAPH, GET_GRAPHICS } from "../../../graphql"
+import { Heading } from "../../elements/Heading"
+import { motion } from "framer-motion"
 
 const ChartShare = ({ open, setOpen }) => {
   const { selections } = useSelection()
@@ -14,7 +16,7 @@ const ChartShare = ({ open, setOpen }) => {
     update(cache, { data: { createGraph } }) {
       try {
         const { getCharts } = cache.readQuery({ query: GET_GRAPHICS })
-        cache.writeQuery({
+        cache.writeQucery({
           query: GET_GRAPHICS,
           data: {
             getCharts: getCharts.concat([createGraph]),
@@ -34,10 +36,9 @@ const ChartShare = ({ open, setOpen }) => {
   return (
     <Menu>
       <div className='title' onClick={() => setOpen("share")}>
-        <h2>Share</h2>
+        <Heading>Share</Heading>
       </div>
       <Controls open={open}>
-        <h4>Share chart</h4>
         <Button
           onClick={() =>
             createGraph({
@@ -52,7 +53,13 @@ const ChartShare = ({ open, setOpen }) => {
         </Button>
         {error &&
           error.graphQLErrors.map(({ message }) => (
-            <p style={{ textAlign: "center" }}>{message}</p>
+            <motion.span
+              style={{ textAlign: "center", margin: 0 }}
+              initial={{ y: -10 }}
+              animate={{ y: 0 }}
+            >
+              {message}
+            </motion.span>
           ))}
         {data && <ShareLink id={data.createGraph._id} />}
       </Controls>
