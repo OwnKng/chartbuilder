@@ -17,7 +17,7 @@ const Visualisation = ({ className }) => {
       case "line":
         return <Line />
       default:
-        return null
+        return <div style={{ height: "100%" }}></div>
     }
   }
 
@@ -46,6 +46,7 @@ export default styled(Visualisation)`
   background: var(--color-foreground);
   ${elevation[1]};
   width: 100%;
+  padding-top: 5px;
 
   .viz {
     position: relative;
@@ -68,9 +69,7 @@ export default styled(Visualisation)`
   }
 
   .Input {
-    padding-top: 10px;
-    margin: 0px 20px;
-    height: 15vh;
+    margin: 10px 0px 0px 20px;
   }
 
   .title {

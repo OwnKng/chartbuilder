@@ -9,6 +9,7 @@ export const visOptions = {
     x: ["number"],
     y: ["number"],
     color: ["string", "none"],
+    label: ["string"],
   },
   line: {
     x: ["number"],

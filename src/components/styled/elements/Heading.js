@@ -9,4 +9,9 @@ export const Heading = styled.button`
   font-size: 1.8rem;
   color: var(--color-heading);
   text-transform: uppercase;
+  transition: all 0.4s ease;
+
+  :hover {
+    color: var(--color-button);
+  }
 `

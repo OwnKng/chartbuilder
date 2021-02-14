@@ -7,16 +7,23 @@ import { Menu } from "../../elements/Menu"
 import { SAVEGRAPH, GET_GRAPHICS } from "../../../graphql"
 import { Heading } from "../../elements/Heading"
 import { motion } from "framer-motion"
+import StyledLink from "../../elements/StyledLink"
+import { useState, useEffect } from "react"
 
 const ChartShare = ({ open, setOpen }) => {
   const { selections } = useSelection()
+  const [reminder, setReminder] = useState(false)
+
+  useEffect(() => {
+    setReminder(false)
+  }, [selections])
 
   const [createGraph, { data, error }] = useMutation(SAVEGRAPH, {
     errorPolicy: "all",
     update(cache, { data: { createGraph } }) {
       try {
         const { getCharts } = cache.readQuery({ query: GET_GRAPHICS })
-        cache.writeQucery({
+        cache.writeQuery({
           query: GET_GRAPHICS,
           data: {
             getCharts: getCharts.concat([createGraph]),
@@ -40,14 +47,19 @@ const ChartShare = ({ open, setOpen }) => {
       </div>
       <Controls open={open}>
         <Button
-          onClick={() =>
-            createGraph({
-              variables: {
-                ...selections,
-                data: JSON.stringify(selections.data),
-              },
-            })
-          }
+          onClick={() => {
+            const required = ["data", "x", "y", "theme", "palette"]
+            let keys = Object.keys(selections)
+            keys = keys.filter((key) => selections[key] !== false)
+            required.every((v) => keys.includes(v))
+              ? createGraph({
+                  variables: {
+                    ...selections,
+                    data: JSON.stringify(selections.data),
+                  },
+                })
+              : setReminder(true)
+          }}
         >
           Generate Share Link
         </Button>
@@ -62,6 +74,13 @@ const ChartShare = ({ open, setOpen }) => {
             </motion.span>
           ))}
         {data && <ShareLink id={data.createGraph._id} />}
+        {reminder && (
+          <span style={{ textAlign: "center" }}>
+            Can't save graph until selections are complete. Your graph must have
+            an X and Y variable.
+          </span>
+        )}
+        <StyledLink to='/feed'>Manage my graphs</StyledLink>
       </Controls>
     </Menu>
   )

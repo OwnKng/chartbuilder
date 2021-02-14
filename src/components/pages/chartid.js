@@ -30,6 +30,7 @@ const ChartID = ({ className, match }) => {
 }
 
 export default styled(ChartID)`
-  width: 95vw;
-  margin: 0px auto;
+  height: 85vh;
+  width: 99vw;
+  margin: 10px auto;
 `

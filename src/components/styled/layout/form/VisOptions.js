@@ -12,6 +12,7 @@ const VisOptions = ({
   y,
   color,
   reordered,
+  label,
   reorder,
   handleClick,
 }) => {
@@ -55,6 +56,25 @@ const VisOptions = ({
             name='color'
             types={types}
             accepted={color}
+            handleClick={handleClick}
+          />
+        </Panel>
+      )}
+      {label && (
+        <Panel>
+          <span>Label (for tooltip)</span>
+          <ButtonOptions
+            style={{
+              background: active === "none" ? "var(--color-selected)" : "",
+            }}
+            onClick={() => handleClick({ label: "none" })}
+          >
+            None
+          </ButtonOptions>
+          <AesInput
+            name='label'
+            types={types}
+            accepted={label}
             handleClick={handleClick}
           />
         </Panel>

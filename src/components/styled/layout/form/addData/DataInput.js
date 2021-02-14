@@ -47,40 +47,42 @@ const DataInput = ({ className, toggle = (f) => f }) => {
       <div className={className}>
         <h4>Add data</h4>
         <div className='flex'>
-          <div className='input'>
-            <form
-              onSubmit={(e) => {
-                e.preventDefault()
-                if (data && title) {
-                  createDataset({
-                    variables: {
-                      data: JSON.stringify(data),
-                      name: title,
-                    },
-                  })
-                }
-              }}
-            >
-              <label className='textLabel' htmlFor='dataName'>
-                Name of dataset
-              </label>
-              <input
-                className='nameInput'
-                id='dataName'
-                name='name'
-                value={title}
-                onChange={(event) => setTitle(event.target.value)}
-              />
-              <label className='textLabel' htmlFor='dataInput'>
-                Paste csv data here
-              </label>
-              <textarea id='dataInput' name='data' onChange={handleCSV} />
-              <Button type='submit'>Add new data</Button>
-            </form>
-          </div>
+          <form
+            onSubmit={(e) => {
+              e.preventDefault()
+              if (data && title) {
+                createDataset({
+                  variables: {
+                    data: JSON.stringify(data),
+                    name: title,
+                  },
+                })
+              }
+            }}
+          >
+            <label className='textLabel' htmlFor='dataName'>
+              Name of dataset
+            </label>
+            <input
+              className='nameInput'
+              id='dataName'
+              name='name'
+              value={title}
+              onChange={(event) => setTitle(event.target.value)}
+            />
+            <label className='textLabel' htmlFor='dataInput'>
+              Paste csv data here
+            </label>
+            <textarea id='dataInput' name='data' onChange={handleCSV} />
+            <Button type='submit'>Add new data</Button>
+          </form>
           <div className='preview'>
             <p>preview</p>
-            {data ? <DataTable data={data} /> : <span>Awaiting Valid CSV</span>}
+            {data ? (
+              <DataTable data={data} />
+            ) : (
+              <span>Awaiting valid CSV data</span>
+            )}
           </div>
         </div>
         <div style={{ height: 40 }}>
@@ -114,21 +116,17 @@ export default styled(DataInput)`
 
   .flex {
     display: flex;
-
     @media only screen and (max-width: 600px) {
       flex-direction: column;
     }
-  }
-
-  .input {
-    flex-grow: 1;
   }
 
   form {
     color: var(--color-paragraph);
     display: flex;
     flex-direction: column;
-    justify-items: space-around;
+    flex-grow: 1;
+    min-width: 50%;
   }
 
   input {
@@ -149,8 +147,8 @@ export default styled(DataInput)`
 
   .preview {
     min-height: 280px;
-    flex-grow: 1;
     padding: 0 20px;
+    flex-grow: 1;
 
     p {
       text-transform: uppercase;

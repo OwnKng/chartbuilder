@@ -2,13 +2,14 @@ import styled from "styled-components"
 import { elevation } from "../utilities"
 import Nav from "./Nav"
 import { Link } from "react-router-dom"
+import StyledLink from "../elements/StyledLink"
 
 const Header = ({ className, openSignUp, openSignIn }) => (
   <div className={className}>
     <div>
-      <Link to='/'>
-        <h1>graphix</h1>
-      </Link>
+      <StyledLink className='logo' to='/'>
+        graphix
+      </StyledLink>
     </div>
     <Nav openSignUp={openSignUp} openSignIn={openSignIn} />
   </div>
@@ -23,7 +24,10 @@ export default styled(Header)`
   padding: 0 10px;
   ${elevation[1]};
 
-  a {
+  .logo {
     text-decoration: none;
+    text-transform: uppercase;
+    font-size: 2rem;
+    color: var(--color-button);
   }
 `

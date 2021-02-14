@@ -11,6 +11,7 @@ export default function SelectionProvider({ children }) {
     color: "region",
     geometry: "point",
     reordered: false,
+    label: "country",
     theme: "dark",
     title: "Chart title",
     subtitle: "Subtitle",
@@ -33,6 +34,7 @@ export default function SelectionProvider({ children }) {
         ...value,
         x: false,
         y: false,
+        label: false,
         color: "none",
       }
     } else {
