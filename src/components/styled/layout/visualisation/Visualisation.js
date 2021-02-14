@@ -46,7 +46,6 @@ export default styled(Visualisation)`
   background: var(--color-foreground);
   ${elevation[1]};
   width: 100%;
-  height: 85vh;
 
   .viz {
     position: relative;

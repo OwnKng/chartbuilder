@@ -20,10 +20,8 @@ export default styled(Header)`
   place-items: center;
   justify-content: space-between;
   background: var(--color-foreground);
-  padding: 0 35px;
+  padding: 0 10px;
   ${elevation[1]};
-  min-height: 8vh;
-  margin-bottom: 10px;
 
   a {
     text-decoration: none;

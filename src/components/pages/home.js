@@ -12,7 +12,8 @@ const Home = ({ className }) => (
 export default styled(Home)`
   display: grid;
   width: calc(100vw - 10px);
-  margin: 0px auto;
+  height: 85vh;
+  margin: 10px auto;
   grid-template-areas: "viz form";
   grid-template-columns: 2fr 1fr;
 
@@ -30,7 +31,7 @@ export default styled(Home)`
 
   @media only screen and (max-width: 1024px) {
     max-width: 1000px;
-    margin: 0px auto;
+    height: auto;
     grid-template-areas: "viz" "form";
     grid-template-columns: 1fr;
   }

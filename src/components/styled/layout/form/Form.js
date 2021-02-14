@@ -39,7 +39,6 @@ export default styled(Form)`
   align-content: stretch;
   min-width: 300px;
   ${elevation[1]};
-  height: 85vh;
   overflow: hidden;
 
   background: var(--color-foreground);

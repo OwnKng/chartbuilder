@@ -26,6 +26,7 @@ const ChartFeed = ({ className }) => {
 
 export default styled(ChartFeed)`
   min-height: 100vh;
+  width: 95%;
   max-width: 1000px;
   margin: 0px auto;
 `
