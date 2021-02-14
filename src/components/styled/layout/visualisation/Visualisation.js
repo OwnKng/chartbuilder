@@ -17,7 +17,7 @@ const Visualisation = ({ className }) => {
       case "line":
         return <Line />
       default:
-        return <div style={{ height: "100%" }}></div>
+        return null
     }
   }
 
@@ -37,7 +37,7 @@ const Visualisation = ({ className }) => {
           onChange={(e) => updateSelections({ subtitle: e.target.value })}
         />
       </div>
-      {x && <div className='viz'>{renderChart(geometry)}</div>}
+      <div className='viz'>{x && renderChart(geometry)}</div>
     </div>
   )
 }
