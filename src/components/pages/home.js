@@ -11,7 +11,7 @@ const Home = ({ className }) => (
 
 export default styled(Home)`
   display: grid;
-  width: calc(100vw - 10px);
+  width: 95vw;
   height: 85vh;
   margin: 10px auto;
   grid-template-areas: "viz form";

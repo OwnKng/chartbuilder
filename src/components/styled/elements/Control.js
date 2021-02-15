@@ -24,9 +24,9 @@ const Controls = ({ open, className, children }) => {
 }
 
 export default styled(Controls)`
-  overflow-y: scroll;
   border-bottom: 1px solid var(--color-background);
   max-height: 400px;
+  overflow-y: scroll;
 
   h4 {
     margin: 10px 0px;
@@ -42,6 +42,5 @@ export default styled(Controls)`
     margin: 0 1rem;
     display: flex;
     flex-direction: column;
-    overflow: scroll;
   }
 `
