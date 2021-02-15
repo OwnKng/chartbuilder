@@ -18,6 +18,7 @@ const VisOptions = ({
 }) => {
   const { types } = useType(data)
   const { active } = useActive("color")
+  const { active: activeLabel } = useActive("label")
 
   if (!x) return null
 
@@ -65,7 +66,7 @@ const VisOptions = ({
           <span>Label (for tooltip)</span>
           <ButtonOptions
             style={{
-              background: active === "none" ? "var(--color-selected)" : "",
+              background: activeLabel === "none" ? "var(--color-selected)" : "",
             }}
             onClick={() => handleClick({ label: "none" })}
           >
