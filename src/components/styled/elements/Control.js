@@ -25,7 +25,7 @@ const Controls = ({ open, className, children }) => {
 
 export default styled(Controls)`
   border-bottom: 1px solid var(--color-background);
-  max-height: 350px;
+  max-height: 320px;
   overflow-y: scroll;
 
   h4 {
