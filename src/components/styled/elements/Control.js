@@ -3,7 +3,7 @@ import { motion } from "framer-motion"
 
 const Controls = ({ open, className, children }) => {
   const variants = {
-    open: { height: "400px" },
+    open: { height: "350px" },
     closed: { height: "0px" },
   }
   return (
@@ -25,7 +25,7 @@ const Controls = ({ open, className, children }) => {
 
 export default styled(Controls)`
   border-bottom: 1px solid var(--color-background);
-  max-height: 400px;
+  max-height: 350px;
   overflow-y: scroll;
 
   h4 {

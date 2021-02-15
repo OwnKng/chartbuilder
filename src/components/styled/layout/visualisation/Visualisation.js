@@ -61,9 +61,9 @@ export default styled(Visualisation)`
     display: block;
     border: none;
     outline: none;
-    width: calc(100% - 20px);
+    width: calc(100% - 40px);
     margin: 4px 0px;
-    padding: 0.5rem 0.5rem;
+    padding: 5px 10px;
     background: var(--color-userInput);
     color: var(--color-heading);
   }
