@@ -129,6 +129,7 @@ const Chart = ({
               cy={yScale(getY(point))}
               r={4}
               fill={colorScale(getColor(point))}
+              stroke={point === tooltipData ? "var(--color-heading)" : "none"}
             />
           ))}
       </svg>
