@@ -24,13 +24,6 @@ const Nav = ({ className, openMenu }) => {
                 </div>
               </li>
               <li>
-                <div>
-                  <button onClick={() => openMenu("createdBy")}>
-                    Created with GRAPHIX
-                  </button>
-                </div>
-              </li>
-              <li>
                 <button
                   onClick={() => {
                     localStorage.removeItem("token")
@@ -48,6 +41,13 @@ const Nav = ({ className, openMenu }) => {
             </>
           ) : (
             <>
+              <li>
+                <div>
+                  <button onClick={() => openMenu("createdBy")}>
+                    Created with GRAPHIX
+                  </button>
+                </div>
+              </li>
               <li>
                 <button onClick={() => openMenu("signUp")}>Sign up</button>
               </li>
