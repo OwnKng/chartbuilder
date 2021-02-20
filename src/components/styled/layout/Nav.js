@@ -20,6 +20,13 @@ const Nav = ({ className, openMenu }) => {
               </li>
               <li>
                 <div>
+                  <button onClick={() => openMenu("createdBy")}>
+                    Created with GRAPHIX
+                  </button>
+                </div>
+              </li>
+              <li>
+                <div>
                   <Link to='/feed'>My Graphs</Link>
                 </div>
               </li>
