@@ -1,17 +1,16 @@
 import styled from "styled-components"
 import { elevation } from "../utilities"
 import Nav from "./Nav"
-import { Link } from "react-router-dom"
 import StyledLink from "../elements/StyledLink"
 
-const Header = ({ className, openSignUp, openSignIn }) => (
+const Header = ({ className, openMenu }) => (
   <div className={className}>
     <div>
       <StyledLink className='logo' to='/'>
         graphix
       </StyledLink>
     </div>
-    <Nav openSignUp={openSignUp} openSignIn={openSignIn} />
+    <Nav openMenu={openMenu} />
   </div>
 )
 

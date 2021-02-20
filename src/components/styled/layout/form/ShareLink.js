@@ -21,7 +21,7 @@ const ShareLink = ({ className, id }) => {
     >
       <h5>Sharing link created!</h5>
       <Link ref={linkRef} to={`/chart${id}`}>
-        http://localhost:3000/chart{id}
+        https://graphix-viz.netlify.app/chart{id}
       </Link>
       <button onClick={() => copyToClipboard()}>Copy to clipboard</button>
       <p>{copy}</p>

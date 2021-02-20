@@ -4,7 +4,7 @@ import { IS_LOGGED_IN, GET_USER } from "../../graphql"
 import { useHistory } from "react-router-dom"
 import { Link } from "react-router-dom"
 
-const Nav = ({ className, openSignUp = (f) => f, openSignIn = (f) => f }) => {
+const Nav = ({ className, openMenu }) => {
   const { data, client } = useQuery(IS_LOGGED_IN)
   const { data: user } = useQuery(GET_USER)
   let history = useHistory()
@@ -13,16 +13,21 @@ const Nav = ({ className, openSignUp = (f) => f, openSignIn = (f) => f }) => {
     <div className={className}>
       <nav>
         <ul>
-          {data.isLoggedIn && user && (
-            <li className='greeting'>
-              <p>Welcome back, {user.user.username}</p>
-            </li>
-          )}
-          {data.isLoggedIn ? (
+          {data.isLoggedIn && user ? (
             <>
+              <li className='greeting'>
+                <p>Welcome back, {user.user.username}</p>
+              </li>
               <li>
                 <div>
                   <Link to='/feed'>My Graphs</Link>
+                </div>
+              </li>
+              <li>
+                <div>
+                  <button onClick={() => openMenu("createdBy")}>
+                    Created with GRAPHIX
+                  </button>
                 </div>
               </li>
               <li>
@@ -44,10 +49,10 @@ const Nav = ({ className, openSignUp = (f) => f, openSignIn = (f) => f }) => {
           ) : (
             <>
               <li>
-                <button onClick={() => openSignUp()}>Sign up</button>
+                <button onClick={() => openMenu("signUp")}>Sign up</button>
               </li>
               <li>
-                <button onClick={() => openSignIn()}>Sign in</button>
+                <button onClick={() => openMenu("signIn")}>Sign in</button>
               </li>
             </>
           )}

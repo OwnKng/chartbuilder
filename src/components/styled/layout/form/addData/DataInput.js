@@ -149,6 +149,7 @@ export default styled(DataInput)`
     min-height: 280px;
     padding: 0 20px;
     flex-grow: 1;
+    overflow: scroll;
 
     p {
       text-transform: uppercase;

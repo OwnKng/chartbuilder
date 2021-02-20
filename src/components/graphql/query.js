@@ -61,3 +61,13 @@ export const GETCHART = gql`
     }
   }
 `
+
+export const GET_PUBLIC_CHARTS = gql`
+  query GetPublicCharts {
+    getPublicCharts {
+      _id
+      title
+      geometry
+    }
+  }
+`
