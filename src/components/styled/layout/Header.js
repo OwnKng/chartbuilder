@@ -23,10 +23,16 @@ export default styled(Header)`
   padding: 0 10px;
   ${elevation[1]};
 
+  @media only screen and (max-width: 600px) {
+    display: block;
+  }
+
   .logo {
     text-decoration: none;
     text-transform: uppercase;
     font-size: 2rem;
     color: var(--color-button);
+    padding-top: 5px;
+    line-height: 1;
   }
 `

@@ -30,6 +30,7 @@ export default styled(Home)`
   justify-content: center;
 
   @media only screen and (max-width: 1024px) {
+    display: block;
     max-width: 1000px;
     height: auto;
     grid-template-areas: "viz" "form";

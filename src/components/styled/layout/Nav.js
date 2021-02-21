@@ -73,6 +73,10 @@ export default styled(Nav)`
   color: var(--color-paragraph);
 
   @media only screen and (max-width: 600px) {
+    li {
+      padding: 0px 0px;
+    }
+
     .greeting {
       display: none;
     }
@@ -80,11 +84,13 @@ export default styled(Nav)`
 
   ul {
     display: flex;
+    justify-content: space-between;
+    padding: 0px;
   }
 
   li {
     list-style-type: none;
-    padding: 0 10px;
+    padding: 0px 10px;
   }
 
   p {

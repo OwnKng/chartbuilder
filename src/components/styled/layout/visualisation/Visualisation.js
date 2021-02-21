@@ -51,6 +51,7 @@ export default styled(Visualisation)`
   .viz {
     position: relative;
     height: 70vh;
+    margin-bottom: 5px;
 
     @media only screen and (max-width: 1024) {
       height: 550px;
